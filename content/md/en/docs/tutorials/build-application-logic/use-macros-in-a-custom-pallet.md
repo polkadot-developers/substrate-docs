@@ -32,15 +32,11 @@ This tutorial requires compiling Rust code and takes approximately one to two ho
 
 ## Before you begin
 
-For this tutorial, you download and use working code. Before you begin, verify the following:
+Before you begin, verify the following:
 
 - You have configured your environment for Substrate development by installing [Rust and the Rust toolchain](/install/).
 
-- You have completed [Build a local blockchain](/tutorials/build-a-blockchain/build-local-blockchain/) and have the Substrate node template installed locally.
-
-- You have used predefined accounts as described in [Simulate a network](/tutorials/build-a-blockchain/simulate-network/) to start nodes on a single computer.
-
-- You are generally familiar with software development and use command-line interfaces.
+- You have cloned the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template), which will be used as the starting point for this tutorial.
 
 ## Tutorial objectives
 
@@ -52,11 +48,11 @@ By completing this tutorial, you will accomplish the following objectives:
 
 - Start a blockchain node that contains a custom pallet.
 
-- Add front-end code that exposes the proof-of-existence pallet.
+- Interact with a front-end that exposes the proof-of-existence pallet.
 
-## Design the application
+## Application design
 
-The proof-of-existence application exposes the following callable functions:
+The proof-of-existence application exposes two callable functions:
 
 - `create_claim()` allows a user to claim the existence of a file by uploading a hash.
 
@@ -100,19 +96,12 @@ Therefore, the first step is to remove some files and content from the files in 
    You won't be using the template code in this tutorial.
    However, you can review the template code to see what it provides before you delete it.
 
-1. Delete all of the lines in the `lib.rs` file.
-
-1. Add the macro required to build both the native Rust binary (`std`) and the WebAssembly (`no_std`) binary.
+1. Delete all of the lines in the `lib.rs` file, and replace it with the skeleton of a custom pallet:
 
    ```rust
+   // All pallets must be configured for `no_std`.
    #![cfg_attr(not(feature = "std"), no_std)]
-   ```
 
-   All of the pallets used in a runtime must be set to compile with the `no_std` features.
-
-1. Add a skeleton set of pallet dependencies and [macros](/reference/frame-macros) that the custom pallet requires by copying the following code:
-
-   ```rust
    // Re-export pallet items so that they can be accessed from the crate namespace.
    pub use pallet::*;
 
@@ -122,7 +111,6 @@ Therefore, the first step is to remove some files and content from the files in 
      use frame_system::pallet_prelude::*;
 
      #[pallet::pallet]
-     #[pallet::generate_store(pub(super) trait Store)]
      pub struct Pallet<T>(_);
 
      #[pallet::config]  // <-- Step 2. code block will replace this.
@@ -131,17 +119,25 @@ Therefore, the first step is to remove some files and content from the files in 
      #[pallet::storage] // <-- Step 5. code block will replace this.
      #[pallet::call]    // <-- Step 6. code block will replace this.
    }
+
+   pub mod weights {
+      // Placeholder struct for the pallet weights
+      pub struct SubstrateWeight<T>(core::marker::PhantomData<T>);
+   }
    ```
 
    You now have a framework that includes placeholders for _events_, _errors_, _storage_, and _callable functions_.
+
+   > NOTE: Pallet weights are outside the scope of this tutorial. If you want to learn more about weights, you can read our documentation [here](/reference/how-to-guides/weights/).
+
 
 1. Save your changes.
 
 ## Configure the pallet to emit events
 
 Every pallet has a [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html) called `Config`.
-You use this trait to configure the settings that your specific pallet requires.
-For this tutorial, the configuration setting enables the pallet to emit events.
+You use this trait to expose configurable options and connect your pallet to other parts of the runtime.
+For this tutorial, we need to configure out pallet to emit events.
 
 To define the `Config` trait for the proof-of-existence pallet:
 
@@ -155,6 +151,9 @@ To define the `Config` trait for the proof-of-existence pallet:
    pub trait Config: frame_system::Config {
      /// Because this pallet emits events, it depends on the runtime's definition of an event.
      type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+      /// Pallets use weights to measure the complexity of the callable functions.
+      /// Configuring weights is outside the scope of this tutorial, so we will leave it empty for now.
+      type WeightInfo;
    }
    ```
 
@@ -163,13 +162,12 @@ To define the `Config` trait for the proof-of-existence pallet:
 ## Implement pallet events
 
 Now that you've configured the pallet to emit events, you are ready to define those events.
-As described in [Design the application](#design-the-application), the proof-of-existence pallet emits an event under the following conditions:
+Based on the [application design](#application-design), we want the proof-of-existence pallet to emit an event under the following conditions:
 
 - When a new claim is added to the blockchain.
 - When a claim is revoked.
 
-Each event also displays an `AccountId` to identify who triggered the
-event and the proof-of-existence claim (as `Hash`) that is being stored or removed.
+Each event can include an `AccountId` to identify who triggered the event and a `Hash`, representing the proof-of-existence claim that is being stored or removed.
 
 To implement the pallet events:
 
@@ -228,7 +226,7 @@ To implement the errors for the proof-of-existence pallet:
 
 To add a new claim to the blockchain, the proof-of-existence pallet requires a storage mechanism.
 To address this requirement, you can create a key-value map, where each claim points to the owner and the block number when the claim was made.
-To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html).
+To create this key-value map, you can use the FRAME [`StorageMap`](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageMap.html).
 
 To implement storage for the proof-of-existence pallet:
 
@@ -268,8 +266,8 @@ To implement this logic in the proof-of-existence pallet:
    // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
    #[pallet::call]
    impl<T: Config> Pallet<T> {
-     #[pallet::weight(0)]
-     #[pallet::call_index(1)]
+     #[pallet::weight(Weight::default())]
+     #[pallet::call_index(0)]
      pub fn create_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
        // This function will return an error if the extrinsic is not signed.
@@ -290,8 +288,8 @@ To implement this logic in the proof-of-existence pallet:
        Ok(())
      }
 
-     #[pallet::weight(0)]
-     #[pallet::call_index(2)]
+     #[pallet::weight(Weight::default())]
+     #[pallet::call_index(1)]
      pub fn revoke_claim(origin: OriginFor<T>, claim: T::Hash) -> DispatchResult {
        // Check that the extrinsic was signed and get the signer.
        // This function will return an error if the extrinsic is not signed.
@@ -315,13 +313,13 @@ To implement this logic in the proof-of-existence pallet:
 
 1. Save your changes and close the file.
 
-1. Check that your code compiles by running the following command:
+1. Check that your pallet compiles by running the following command:
 
    ```bash
-   cargo check -p node-template-runtime --release
+   cargo check -p pallet-template
    ```
 
-   The `[-p](https://doc.rust-lang.org/cargo/commands/cargo-check.html#options) node-template-runtime` directive tells cargo to only check the `node_template_runtime` package.
+   The `-p` flag tells cargo to only check the `pallet-template` that you have been modifying and saving you some compile time.
 
    You can refer to the node template [solution](https://github.com/substrate-developer-hub/substrate-node-template/blob/tutorials/solutions/proof-of-existence/pallets/template/src/lib.rs) if you get stuck.
 
