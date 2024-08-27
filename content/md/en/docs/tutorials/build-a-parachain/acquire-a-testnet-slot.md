@@ -45,13 +45,10 @@ To prepare an account:
 
 1. Click **Save**.
 
-2. Join the [Rococo Element channel](https://matrix.to/#/#rococo-faucet:matrix.org) and send a message with`!drip` and the public address for your Rococo to get 100 ROC in your wallet.
+2. Go to https://faucet.polkadot.io, provide your public address in the form input and submit to get 100 ROC tokens in your wallet.
 
-   For example, send a message similar to the following:
-
-   ```text
-   !drip 5CVYesFxbDBU5rkZXYTAA6BnADbCoSpQkvexBQZvbtvyGTP1
-   ```
+   > Alternatively you can join the [Rococo Element channel](https://matrix.to/#/#rococo-faucet:matrix.org) and send a message with`!drip` and the public address for your Rococo to get 100 ROC in your wallet.
+   > For example, send a message similar to the following: `!drip 5CVYesFxbDBU5rkZXYTAA6BnADbCoSpQkvexBQZvbtvyGTP1`
 
 ## Reserve a parachain identifier
 
@@ -173,17 +170,17 @@ For example, you can start the collator with a command  similar to the following
   --chain raw-parachain-chainspec.json \
   --base-path /tmp/parachain/pubs-demo \
   --port 50333 \
-  --ws-port 8855 \
+  --rpc-port 8855 \
   -- \
   --execution wasm \
   --chain rococo \
   --port 50343 \
-  --ws-port 9988
+  --rpc-port 9988
   ```
 
 In this example, the first `--port` setting specifies the port for the collator node and the second `--port` specifies the port for the embedded relay chain node.
-The first `--ws-port` setting specifies the port you can use to connect to collator using Polkadot-JS API calls or the Polkadot/Substrate Portal application.
-The second `--ws-port` specifies the port for connecting to the embedded relay chain using the Polkadot-JS API or the Polkadot/Substrate Portal application.
+The first `--rpc-port` setting specifies the port you can use to connect to collator using Polkadot-JS API calls or the Polkadot/Substrate Portal application.
+The second `--rpc-port` specifies the port for connecting to the embedded relay chain using the Polkadot-JS API or the Polkadot/Substrate Portal application.
 
 ## Register as a parathread
 

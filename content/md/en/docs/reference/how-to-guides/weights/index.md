@@ -8,5 +8,3 @@ The _How-to_ guides in the _Weights_ category illustrate use benchmarks and weig
 
 - [Calculate fees](/reference/how-to-guides/weights/calculate-fees/)
 - [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/)
-- [Use custom weights](/reference/how-to-guides/weights/use-custom-weights/)
-- [Use conditional weights](/reference/how-to-guides/weights/use-conditional-weights/)

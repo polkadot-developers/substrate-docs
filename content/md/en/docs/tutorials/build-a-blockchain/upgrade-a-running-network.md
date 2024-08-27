@@ -149,7 +149,7 @@ To update the dependencies for the runtime to include the Utility pallet:
    codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
    scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.37" }
+   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
    ```
 
 1. Add the Utility pallet as a dependency.
@@ -160,8 +160,8 @@ To update the dependencies for the runtime to include the Utility pallet:
    pallet-utility = {
       version = "4.0.0-dev",
       default-features = false,
-      git = "https://github.com/paritytech/substrate.git",
-      branch = "polkadot-v0.9.37"
+      git = "https://github.com/paritytech/polkadot-sdk.git",
+      branch = "polkadot-v1.0.0"
    }
    ```
 
@@ -207,13 +207,13 @@ To update the dependencies for the runtime to include the Utility pallet:
    pallet-scheduler = { 
       version = "4.0.0-dev", 
       default-features = false, 
-      git = "https://github.com/paritytech/substrate.git", 
-      branch = "polkadot-v0.9.36" 
+      git = "https://github.com/paritytech/polkadot-sdk.git", 
+      branch = "polkadot-v1.0.0" 
    }
    ```
 
    Be sure to use the same **version** and **branch** information for the Scheduler pallet as you see used for the other pallets included in the runtime.
-   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v0.9.36"`.
+   In this example, all of the pallets in the node template runtime use `version = "4.0.0-dev"` and `branch = "polkadot-v1.0.0"`.
 -->
 
 ### Add the Utility pallet configuration
@@ -345,7 +345,7 @@ To add the Utility types and configuration trait:
    - `state_version` specifies the version of the key-value trie data structure that the runtime uses.
 
    To upgrade the runtime, you must _increase_ the `spec_version`.
-   For more information, see the [FRAME System](https://github.com/paritytech/substrate/tree/master/frame/system/src/lib.rs) module and the `can_set_code` method.
+   For more information, see the [FRAME System](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/system/src/lib.rs) module and the `can_set_code` method.
 
 1.  Save your changes and close the `runtime/src/lib.rs` file.
 

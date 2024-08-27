@@ -382,7 +382,7 @@ Writing weights to "rocksdb_weights.rs"
 
 To get benchmarking information for the `paritydb` database instead of the default `rocksdb` database, use the `--db paritydb` command-line option.
 TO get storage benchmarking information for Polkadot or any other real chain snapshot, use the command-line option `--state-version 0`. 
-For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli/src/storage#the-benchmark-storage-command).
+For more information about using the benchmark storage subcommand, see [benchmark storage command](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/utils/frame/benchmarking-cli/src/storage).
 
 For more information about how to add benchmarking to the runtime, see [Benchmark](/test/benchmark/) and [Add benchmarks](/reference/how-to-guides/weights/add-benchmarks/).
 
