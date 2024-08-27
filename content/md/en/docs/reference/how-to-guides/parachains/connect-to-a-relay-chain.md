@@ -180,8 +180,8 @@ pub const fn deposit(items: u32, bytes: u32) -> Balance {}
 You can find this function for each relay chain in the Polkadot repository.
 For example:
 
-- [Kusama](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/kusama/constants/src/lib.rs)
-- [Polkadot](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/polkadot/constants/src/lib.rs)
+- [Kusama](https://github.com/polkadot-fellows/runtimes/blob/main/relay/kusama/constants/src/lib.rs)
+- [Polkadot](https://github.com/polkadot-fellows/runtimes/blob/main/relay/polkadot/constants/src/lib.rs)
 - [Rococo](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/rococo/constants/src/lib.rs)
 - [Westend](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/runtime/westend/constants/src/lib.rs)
 
