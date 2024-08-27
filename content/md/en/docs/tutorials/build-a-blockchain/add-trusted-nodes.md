@@ -304,7 +304,6 @@ To start the first node:
       --chain ./customSpecRaw.json \
       --port 30333 \
       --rpc-port 9945 \
-      --rpc-port 9933 \
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
       --rpc-methods Unsafe \
@@ -474,7 +473,6 @@ To add a second validator to the private network:
       --chain ./customSpecRaw.json \
       --port 30334 \
       --rpc-port 9946 \
-      --rpc-port 9934 \
       --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
       --validator \
       --rpc-methods Unsafe \
@@ -553,7 +551,6 @@ To add a second validator to the private network:
       --chain ./customSpecRaw.json \
       --port 30334 \
       --rpc-port 9946 \
-      --rpc-port 9934 \
       --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
       --validator \
       --rpc-methods Unsafe \

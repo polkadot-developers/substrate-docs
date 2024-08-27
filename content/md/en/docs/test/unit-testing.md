@@ -145,7 +145,7 @@ fn example_events_since_last_call() -> Vec<super::Event<Runtime>> {
 }
 ```
 
-You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/substrate/blob/master/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/substrate/blob/master/frame/staking/src/mock.rs).
+You can find examples of this type of event testing in the tests for the [nomination pool](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/nomination-pools/src/mock.rs) or [staking](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/staking/src/mock.rs).
 If you rewrite the previous event test with this new function, the resulting code looks like this:
 
 ```rust

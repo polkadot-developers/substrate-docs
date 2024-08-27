@@ -3,6 +3,9 @@ title: FRAME macros
 description:
 keywords:
 ---
+<div class="warning">
+  <strong>⚠️ WARNING:</strong> This section contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
 
 Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
 These runtime macros allow you to focus on your runtime logic rather than spending time on encoding and decoding on-chain variables or duplicating the code required for [basic blockchain development](/learn/runtime-development#core-primitives).
@@ -253,16 +256,6 @@ For example:
 pub struct Pallet<T>(_);
 ```
 
-This macro can generate the `Store` trait to contain an associated type for each storage item if you provide the `#[pallet::generate_store($vis trait Store)]` attribute macro.
-
-For example:
-
-```rust
-#[pallet::pallet]
-#[pallet::generate_store(pub(super) trait Store)]
-pub struct Pallet<T>(_);
-```
-
 For more information about working with storage and this macro, see the [macro expansion](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition.
 
 ### #[pallet::without\_storage\_info]
@@ -277,7 +270,6 @@ To use it, add the `#[pallet::without_storage_info]` attribute to the pallet str
 
 ```rust
 #[pallet::pallet]
-#[pallet::generate_store(pub(super) trait Store)]
 #[pallet::without_storage_info]
 pub struct Pallet<T>(_);
 ```
@@ -392,9 +384,9 @@ $vis type $StorageName<$some_generic> $optional_where_clause
 
 For more information, see the Rust documentation for [pallet::storage](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#storage-palletstorage-optional) and the following storage data structures:
 
-- [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageDoubleMap.html)
-- [StorageMap](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
-- [StorageValue](https://paritytech.github.io/substrate/master/frame_support/pallet_prelude/struct.StorageValue.html)
+- [StorageDoubleMap](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageDoubleMap.html)
+- [StorageMap](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageMap.html)
+- [StorageValue](https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/types/struct.StorageValue.html)
 
 ### #[pallet::type_value]
 

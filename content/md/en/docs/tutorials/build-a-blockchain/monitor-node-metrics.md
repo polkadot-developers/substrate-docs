@@ -246,5 +246,5 @@ To import the dashboard template:
 
 - [Add trusted nodes](/tutorials/build-a-blockchain/add-trusted-nodes)
 - [Monitor your node](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
--  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus)
+-  [Substrate Prometheus Exporter](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/utils/prometheus)
 - [Polkadot network dashboard](https://github.com/w3f/polkadot-dashboard)

@@ -66,9 +66,9 @@ The benchmarking framework automatically generates a file with those formulas fo
 The [benchmarking framework](https://paritytech.github.io/substrate/master/frame_benchmarking/index.html) provides tools that help you add, test, run, and analyze benchmarks for the functions in the runtime.
 The benchmarking tools that help you determine the time it takes to execute function calls include the following:
 
-- [Benchmark macros](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
-- [Linear regression analysis functions](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/analysis.rs) for processing benchmark data.
-- [Command-line interface (CLI)](https://github.com/paritytech/substrate/tree/master/utils/frame/benchmarking-cli) to enable you to execute benchmarks on your node.
+- [Benchmark macros](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/benchmarking/src/lib.rs) to help you write, test, and add runtime benchmarks.
+- [Linear regression analysis functions](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/benchmarking/src/analysis.rs) for processing benchmark data.
+- [Command-line interface (CLI)](hhttps://github.com/paritytech/polkadot-sdk/tree/master/substrate/utils/frame/benchmarking-cli) to enable you to execute benchmarks on your node.
 
 The end-to-end benchmarking pipeline is disabled by default when compiling a node.
 If you want to run benchmarks, you need to compile a node with the `runtime-benchmarks` Rust feature flag.
@@ -87,7 +87,7 @@ If a function executes different code paths depending on user input or other con
 To help you see where complexity in the code might become unmanageable, you should create a benchmark for each possible execution path.
 The benchmarks can help you identify places in the code where you might want to enforce boundaries—for example, by limiting the number of elements in a vector or limiting the number of iterations in a `for` loop—to control how users interact with your pallet.
 
-You can find examples of end-to-end benchmarks in all of the prebuilt [FRAME pallets](https://github.com/paritytech/substrate/tree/master/frame).
+You can find examples of end-to-end benchmarks in all of the prebuilt [FRAME pallets](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame).
 
 ## Testing benchmarks
 
@@ -120,7 +120,7 @@ cargo test --package pallet-balances --features runtime-benchmarks
 
 The benchmarks included with each pallet are not automatically added to your node.
 To execute these benchmarks, you need to implement the `frame_benchmarking::Benchmark` trait.
-You can see an example of how to do this in the [Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs).
+You can see an example of how to do this in the [Substrate node](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/bin/node/runtime/src/lib.rs).
 
 Assuming there are already some benchmarks set up on your node, you just need to add the pallet to the `define_benchmarks!` macro:
 
@@ -220,7 +220,7 @@ To get a full list of available options for the `benchmark pallet` subcommand, r
 
 ## Where to go next
 
-- [frame-benchmarking README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
+- [frame-benchmarking README](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/benchmarking/README.md)
 - [Substrate Seminar: Benchmarking Your Substrate Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 - [How-to: Add benchmarks](/reference/how-to-guides/weights/add-benchmarks)
 - [Command reference: node-template benchmark](/reference/command-line-tools/node-template/#benchmark)
