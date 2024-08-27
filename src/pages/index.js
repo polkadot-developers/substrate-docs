@@ -57,26 +57,6 @@ export const query = graphql`
         }
       }
     }
-    goodbye: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/homepage/goodbye.md$/" } }) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            link
-            order
-            description
-            bodyLinkOneURL
-            bodyLinkOneTitle
-            bodyLinkTwoURL
-            bodyLinkTwoTitle
-            bodyLinkThreeURL
-            bodyLinkThreeTitle
-            featured_image
-          }
-        }
-      }
-    }
     content: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "//(homepage)/" } }) {
       edges {
         node {
