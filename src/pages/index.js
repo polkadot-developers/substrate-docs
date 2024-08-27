@@ -31,7 +31,7 @@ export default function Home({ data }) {
       <Section className="flex justify-center">
         <Card
           title="Polkadot SDK"
-          text="Polkadot SDK is now the overarching name for Substrate, and the rest of Polkadot's Development Kit"
+          text="Polkadot SDK is the overarching name for Substrate, and the rest of Polkadot's Development Kit."
           featured_image="/media/images/homepage/hands-on.png"
           link="/polkadot-sdk"
           bodyLinkOneURL="https://github.com/polkadot-developers/"

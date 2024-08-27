@@ -12,7 +12,7 @@ menu:
   - community
 
 polkadot-sdk:
-  title: Substrate -> Polkadot SDK
+  title: Substrate to Polkadot SDK
   url: /polkadot-sdk/
 
 quick-start:
