@@ -10,4 +10,6 @@ bodyLinkTwoTitle: Simulate a network
 bodyLinkTwoURL: /tutorials/build-a-blockchain/simulate-network/
 bodyLinkThreeTitle: Add a pallet
 bodyLinkThreeURL: /tutorials/build-application-logic/add-a-pallet/
+bodyLinkFourTitle:
+bodyLinkFourURL:
 ---

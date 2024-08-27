@@ -1,4 +1,5 @@
 menu:
+  - polkadot-sdk
   - quick-start
   - learn
   - install
@@ -10,8 +11,12 @@ menu:
   - reference
   - community
 
+polkadot-sdk:
+  title: Substrate -> Polkadot SDK
+  url: /polkadot-sdk/
+
 quick-start:
-  title: Quick start
+  title: Quick start (Deprecated)
   url: /quick-start/
   pages:
     - title: Substrate at a glance
@@ -24,7 +29,7 @@ quick-start:
       url: /quick-start/modify-the-runtime/
 
 learn:
-  title: Learn
+  title: Learn (Deprecated)
   url: /learn/
   pages:
     - title: Welcome to Substrate
@@ -69,7 +74,7 @@ learn:
       url: /learn/xcm-communication/
 
 install:
-  title: Install
+  title: Install (Deprecated)
   url: /install/
   pages:
     - title: Rust toolchain
@@ -84,7 +89,7 @@ install:
       url: /install/developer-tools/
     - title: Troubleshoot Rust issues
       url: /install/troubleshoot-rust-issues/
-  
+
 #design:
  # title: Design
  # url: /design/
@@ -106,7 +111,7 @@ install:
   #- title: Economic models
   #url: /design/economic-models/
 build:
-  title: Build
+  title: Build (Deprecated)
   url: /build/
   pages:
     - title: Smart contracts
@@ -143,7 +148,7 @@ build:
     #url: /build/executor/
 
 test:
-  title: Test
+  title: Test (Deprecated)
   url: /test/
   pages:
     - title: Unit test
@@ -156,9 +161,9 @@ test:
       url: /test/simulate-parachains/
     - title: Check runtime
       url: /test/check-runtime/
-      
+
 deploy:
-  title: Deploy
+  title: Deploy (Deprecated)
   url: /deploy/
   pages:
     - title: Prepare to deploy
@@ -174,7 +179,7 @@ deploy:
 #   - title: Launch a parachain
 #     url: /deploy/launch-a-parachain/
 maintain:
-  title: Maintain
+  title: Maintain (Deprecated)
   url: /maintain/
   pages:
     - title: Monitor
@@ -191,7 +196,7 @@ maintain:
 #     url: /maintain/data-migration/
 
 tutorials:
-  title: Tutorials
+  title: Tutorials (Deprecated)
   url: /tutorials/
   pages:
     - title: Build a blockchain
@@ -282,7 +287,7 @@ tutorials:
 #         url: /tutorials/integrate-with-tools/access-evm-accounts/
 
 reference:
-  title: Reference
+  title: Reference (Deprecated)
   url: /reference/
   pages:
     - title: Rust API
@@ -335,7 +340,7 @@ reference:
       url: /reference/how-to-guides/
 
 community:
-  title: Community
+  title: Community (Deprecated)
   url: /community/
   pages:
     - title: Content style guide

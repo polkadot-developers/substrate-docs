@@ -1,0 +1,37 @@
+---
+title: Polkadot SDK
+description:
+keywords:
+  - polkadot-sdk
+---
+
+
+## Substrate to Polkadot SDK
+
+In [May
+2023](https://forum.polkadot.network/t/psa-parity-is-currently-working-on-merging-the-polkadot-stack-repositories-into-one-single-repository/2883),
+Parity Technologies started moving 3 repositories of
+[`substrate`](https://github.com/paritytech/substrate),
+[`polkadot`](https://github.com/paritytech/polkadot), and
+[`cumulus`](https://github.com/paritytech/cumulus), formerly independent in development and
+branding, under one mew mono-repo called
+[`polkadot-sdk`](https://github.com/paritytech/polkadot-sdk). Consequently, the [runtimes of the
+Polkadot and Kusama relay chains, and their system chain](https://github.com/polkadot-fellows/runtimes) were moved to be maintained by the [Polkadot fellowship](polkadot-fellows.github.io/dashboard/).
+
+This transition gave birth to a new vision in which these tools are seen from lense of being part of `polkadot-sdk`, while still being independently useful.
+
+Most impacted in this transition is **Substrate**, and part of this impact is gradual deprecation of
+this website. The content in this website is no longer maintained, and will be gradually moved to a
+new home. Consider the following resources as primary sources of information.
+
+Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of polkadot-sdk, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
+
+## Alternative Resources
+
+Below, you can find a number of replacement resources to learn more about Polkadot SDK:
+
+- [Polkadot Wiki](https://wiki.polkadot.network/)
+- [Polkadot Developers](https://github.com/polkadot-developers/)
+- [Polkadot Blockchain Academy](https://academy.polkadot.network/)
+- [Polkadot Ecosystem Documentation by Papermoon](https://wiki.polkadot.network/)
+- [Polkadot SDK Rust Docs](https://wiki.polkadot.network/)
