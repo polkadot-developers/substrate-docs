@@ -11,6 +11,10 @@ keywords:
   - signed payload
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 This tutorial illustrates how to modify a pallet to include an offchain worker and configure the pallet and runtime to enable the offchain worker to submit transactions that update the on-chain state.
 
 ## Using offchain workers
@@ -39,7 +43,7 @@ It is also important to consider that even an unsigned transaction with a signed
 In most cases, checking whether a transaction was submitted by an offchain worker before writing to storage isn't sufficient to protect the network.
 Instead of assuming that the offchain worker can be trusted without safeguards, you should intentionally set restrictive permissions that limit access to the process and what it can do.
 
-Remember that unsigned transactions are essentially an **open door** into your runtime. 
+Remember that unsigned transactions are essentially an **open door** into your runtime.
 You should only use them after careful consideration of the conditions under which they should be allowed to execute.
 Without safeguards, malicious actors could impersonate offchain workers and access runtime storage.
 
@@ -80,7 +84,7 @@ To enable offchain workers to send signed transactions:
 
 1. Open the `src/lib.rs` file for your pallet in a text editor.
 2. Add the `#[pallet::hooks]` macro and the entry point for offchain workers to the code.
-   
+
    For example:
 
    ```rust
@@ -170,7 +174,7 @@ To enable offchain workers to send signed transactions:
    }
    ```
 
-   This code enables you to retrieve all signers that this pallet owns. 
+   This code enables you to retrieve all signers that this pallet owns.
 
 8. Use `send_signed_transaction()` to create a signed transaction call:
 
@@ -214,7 +218,7 @@ To enable offchain workers to send signed transactions:
 1. Open the `runtime/src/lib.rs` file for the node template in a text editor.
 
 1. Add the `AuthorityId` to the configuration for your pallet and make sure it uses the `TestAuthId` from the `crypto` module:
-   
+
 	 ```rust
    impl pallet_your_ocw_pallet::Config for Runtime {
 	   // ...
@@ -232,7 +236,7 @@ To enable offchain workers to send signed transactions:
    ```rust
    use codec::Encode;
    use sp_runtime::{generic::Era, SaturatedConversion};
- 
+
    // ...
 
    impl<LocalCall> frame_system::offchain::CreateSignedTransaction<LocalCall> for Runtime
@@ -321,7 +325,7 @@ Updating the runtime involved the following steps:
 - Adding the `AuthorityId` to the runtime configuration for your pallet.
 - Implementing the `CreateSignedTransaction` trait and `create_transaction()` function.
 - Implementing `SigningTypes` and `SendTransactionTypes` for offchain workers from the `frame_system` pallet.
-   
+
 However, before your pallet offchain workers can submit signed transactions, you must specify at least one account for the offchain worker to use.
 To enable the offchain worker to sign transactions, you must generate the account key for the pallet to own and add that key to the node keystore.
 
@@ -352,7 +356,7 @@ pub fn new_partial(config: &Configuration) -> Result <SomeStruct, SomeError> {
 This example manually adds the key for the `Alice` account to the keystore identified by the `KEY_TYPE` defined in your pallet.
 For a working example, see this sample [service.rs](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/v2.0.0/node/src/service.rs#L87-L105) file.
 
-### Using other accounts 
+### Using other accounts
 
 In a production environment, you can use other tools—such as `subkey`—to generate keys that are specifically for offchain workers to use.
 After you generate one or more keys for offchain workers to own, you can add them to the node keystore by:
@@ -361,9 +365,9 @@ After you generate one or more keys for offchain workers to own, you can add the
 - Passing parameters using the `author_insertKey` RPC method.
 
 For example, you can use the [Polkadot/Substrate Portal](https://polkadot.js.org/apps/#/rpc), Polkadot-JS API, or a `curl` command to select the `author_insertKey` method and specify the key type, secret phrase, and public key parameters for the account to use:
-   
+
 ![Use the `author_insertKey` method to insert an account](/media/images/docs/author_insertKey.png)
-   
+
 Note that the keyType parameter `demo` in this example matches the `KEY_TYPE` declared in the offchain worker pallet.
 
 Now, your pallet is ready to send signed transactions on-chain from offchain workers.
@@ -373,11 +377,11 @@ Now, your pallet is ready to send signed transactions on-chain from offchain wor
 By default, all unsigned transactions are rejected in Substrate.
 To enable Substrate to accept certain unsigned transactions, you must implement the `ValidateUnsigned` trait for the pallet.
 
-Although you must implement the `ValidateUnsigned` trait to send unsigned transactions, this check doesn't guarantee that **only** offchain workers are able to send the transaction. 
+Although you must implement the `ValidateUnsigned` trait to send unsigned transactions, this check doesn't guarantee that **only** offchain workers are able to send the transaction.
 You should always consider the consequences of malicious actors sending these transactions as an attempt to tamper with the state of your chain.
 Unsigned transactions always represent a potential attack vector that a malicious user could exploit and offchain workers can't be assumed to be a reliable source without additional safeguards.
 
-You should never assume that unsigned transactions can only be submitted by an offchain worker. 
+You should never assume that unsigned transactions can only be submitted by an offchain worker.
 By definition, **anyone** can submit them.
 
 ### Configure the pallet
@@ -386,7 +390,7 @@ To enable offchain workers to send unsigned transactions:
 
 1. Open the `src/lib.rs` file for your pallet in a text editor.
 2. Add the [`validate_unsigned`](https://paritytech.github.io/substrate/master/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional) macro.
-   
+
 	 For example:
 
    ```rust
@@ -420,7 +424,7 @@ To enable offchain workers to send unsigned transactions:
    ```
 
 2. Check the calling extrinsics to determine if the call is allowed and return `ValidTransaction` if the call is allowed or `TransactionValidityError` if the call is not allowed.
-   
+
 	 For example:
 
    ```rust
@@ -598,10 +602,10 @@ To make your data structure signable:
    ```
 
    This example uses [`SignedPayload`](https://paritytech.github.io/substrate/master/frame_system/offchain/trait.SignedPayload.html) to verify that the public key in the payload has the same signature as the one provided.
-	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the `public` key contained inside `payload`. 
+	 However, you should note that the code in the example only checks whether the provided `signature` is valid for the `public` key contained inside `payload`.
 	 This check doesn't validate whether the signer is an offchain worker or authorized to call the specified function.
 	 This simple check wouldn't prevent an unauthorized actor from using the signed payload to modify state.
-	 
+
 	 For working examples of this code, see the [offchain function call](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs#L508-L536) and the implementation of [`ValidateUnsigned`](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs#L305-L329).
 
 ## Where to go next

@@ -380,7 +380,7 @@ To connect to the parachain and submit transactions:
 
 3. Change the custom endpoint to connect to the WebSocket port for the parachain.
 
-   If you followed the settings in this tutorial, connect to port `8844``.
+   If you followed the settings in this tutorial, connect to port `8844`.
 
 4. Click **Account** and select **Transfer** to send funds from Alice to another account.
 

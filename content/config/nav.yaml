@@ -1,4 +1,5 @@
 menu:
+  - polkadot-sdk
   - quick-start
   - learn
   - install
@@ -9,6 +10,10 @@ menu:
   - tutorials
   - reference
   - community
+
+polkadot-sdk:
+  title: Substrate to Polkadot SDK
+  url: /polkadot-sdk/
 
 quick-start:
   title: Quick start
@@ -84,7 +89,7 @@ install:
       url: /install/developer-tools/
     - title: Troubleshoot Rust issues
       url: /install/troubleshoot-rust-issues/
-  
+
 #design:
  # title: Design
  # url: /design/
@@ -156,7 +161,7 @@ test:
       url: /test/simulate-parachains/
     - title: Check runtime
       url: /test/check-runtime/
-      
+
 deploy:
   title: Deploy
   url: /deploy/
