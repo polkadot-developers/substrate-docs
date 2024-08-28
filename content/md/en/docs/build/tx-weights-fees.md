@@ -107,7 +107,7 @@ To account for this variability, the Transaction Payment pallet provides the [`F
 The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined.
 If the previous block is more saturated, then the fees are slightly increased.
 Similarly, if the previous block has fewer transactions than the target, fees are decreased by a small amount.
-For more information about fee multiplier adjustments, see the [Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
+For more information about fee multiplier adjustments, see the [Web3 research page](https://research.web3.foundation/Polkadot/overview/token-economics#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ## Transactions with special requirements
 
@@ -237,12 +237,12 @@ use frame_support:: {
         Pays::Yes,
     },
    weights::Weight,
+};
 
 #[pallet::weight(FunctionOf(
   |args: (&Vec<User>,)| args.0.len().saturating_mul(10_000),
   )
 ]
-
 fn handle_users(origin, calls: Vec<User>) {
     // Do something per user
 }
@@ -397,7 +397,7 @@ You can use Substrate **benchmarking functions** and `frame-benchmarking` calls 
 
 - [Benchmark](/test/benchmark/)
 - [SignedExtension](https://paritytech.github.io/substrate/master/sp_runtime/traits/trait.SignedExtension.html)
-- [Custom weights for the Example pallet](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
-- [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)
+- [Custom weights for the Example pallet](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/weights.rs)
+- [Web3 Foundation Research](https://research.web3.foundation/Polkadot/overview/token-economics#relay-chain-transaction-fees-and-per-block-transaction-limits)
 
 <!-- - [Calculate weight](/reference/how-to-guides/weights/) -->

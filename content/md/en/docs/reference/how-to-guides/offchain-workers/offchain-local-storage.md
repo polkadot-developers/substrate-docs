@@ -8,6 +8,10 @@ keywords:
   - storage
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 This guide will teach you how to use an offchain worker to save retrieved data in local storage for future access.
 
 In the last section, we mentioned that offchain workers (**OCW** for short) cannot modify the blockchain state directly, so they have to submit transactions to save their computed results back on-chain.
@@ -153,5 +157,5 @@ If the cached value is found, offchain worker returns; else it will try to acqui
 
 ## Examples
 
-- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/substrate/blob/polkadot-v0.9.28/frame/examples/offchain-worker/src/lib.rs#L372-L441)
+- [**Off-chain worker example pallet** in Substrate](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs#L372-L441)
 - [**OCW pallet** demo](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L299-L342)

@@ -5,6 +5,10 @@ keywords:
   - origins
 ---
 
+<div class="warning">
+  Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_origin/index.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 The runtime origin is used by dispatchable functions to check where a call has come from.
 
 ## Raw origins
@@ -50,7 +54,7 @@ You can look at the source code of the [Sudo module](https://paritytech.github.i
 In addition to the three core origin types, runtime developers are also able to define custom origins.
 These can be used as authorization checks inside functions from specific modules in your runtime, or to define custom access-control logic around the sources of runtime requests.
 
-Customizing origins allows runtime developers to specify valid origins depending on their runtime logic. For example, it may be desirable to restrict access of certain functions to special custom origins and authorize dispatch calls only from members of a [collective](https://github.com/paritytech/substrate/tree/master/frame/collective). The advantage of using custom origins is that it provides runtime developers a way to configure privileged access over dispatch calls to the runtime.
+Customizing origins allows runtime developers to specify valid origins depending on their runtime logic. For example, it may be desirable to restrict access of certain functions to special custom origins and authorize dispatch calls only from members of a [collective](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/collective). The advantage of using custom origins is that it provides runtime developers a way to configure privileged access over dispatch calls to the runtime.
 
 ## Next steps
 
@@ -60,11 +64,11 @@ Customizing origins allows runtime developers to specify valid origins depending
 
 ### Examples
 
-- View the [Sudo pallet](https://github.com/paritytech/substrate/tree/master/frame/sudo) to see how it allows a user to call with `Root` and `Signed` origin.
+- View the [Sudo pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/sudo) to see how it allows a user to call with `Root` and `Signed` origin.
 
-- View the [Timestamp pallet](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to see how it validates an a call with `None` origin.
+- View the [Timestamp pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/timestamp) to see how it validates an a call with `None` origin.
 
-- View the [Collective pallet](https://github.com/paritytech/substrate/tree/master/frame/collective) to see how it constructs a custom `Member` origin.
+- View the [Collective pallet](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/collective) to see how it constructs a custom `Member` origin.
 
 - View our recipe for creating and using a custom origin.
 

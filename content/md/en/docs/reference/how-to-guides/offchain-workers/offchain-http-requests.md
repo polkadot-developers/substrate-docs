@@ -9,6 +9,10 @@ keywords:
   - requests
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 Because most blockchains can't access data that's hosted on servers outside of their own network, they typically use external third-party services—**oracles**—to pull information in from or push information out to locations that are outside of the network.
 For Substrate-based blockchains, **offchain workers** (OCW) provide similar capabilities, but with the advantage of being able to access on-chain state.
 
@@ -94,6 +98,6 @@ However, waiting indefinitely might result in a timeout from the external host m
 
 ## Examples
 
-- [Example pallet: Offchain worker](https://github.com/paritytech/substrate/blob/master/frame/examples/offchain-worker/src/lib.rs)
+- [Example pallet: Offchain worker](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/offchain-worker/src/lib.rs)
 - [Demo: OCW pallet](https://github.com/jimmychu0807/substrate-offchain-worker-demo/blob/master/pallets/ocw/src/lib.rs#L363-#L401)
-- [Source: Substrate core primitives](https://github.com/paritytech/substrate/blob/master/primitives/runtime/src/offchain/http.rs#L63-L76)
+- [Source: Substrate core primitives](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/primitives/runtime/src/offchain/http.rs#L63-L76)

@@ -8,6 +8,10 @@ keywords:
   - errors
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/polkadot_sdk/xcm/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 This section provides reference information for the cross-consensus message (XCM) format.
 
 ## Instructions
@@ -446,7 +450,7 @@ Transact {
 },
 ```
 
-For additional examples of converting origins, see the [prigin_conversion](https://github.com/paritytech/polkadot/blob/master/xcm/xcm-builder/src/origin_conversion.rs) module.
+For additional examples of converting origins, see the [origin_conversion](https://github.com/paritytech/polkadot-sdk/blob/master/polkadot/xcm/xcm-builder/src/origin_conversion.rs) module.
 
 ## Errors
 

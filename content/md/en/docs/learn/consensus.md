@@ -133,5 +133,5 @@ See [AlephBFT](https://github.com/aleph-zero-foundation/aleph-node) for such an 
 
 ## Where to go next
 
-- [BABE research](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html)
-- [GRANDPA research](https://research.web3.foundation/en/latest/polkadot/finality.html)
+- [BABE research](https://research.web3.foundation/Polkadot/protocols/block-production/Babe)
+- [GRANDPA research](https://research.web3.foundation/Polkadot/protocols/finality)

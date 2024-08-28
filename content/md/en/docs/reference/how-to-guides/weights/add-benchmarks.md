@@ -7,19 +7,19 @@ keywords:
   - runtime
 ---
 
-This guide illustrates how to write a simple benchmark for a pallet, test the benchmark, and run [benchmarking](https://github.com/paritytech/substrate/tree/master/frame/benchmarking) commands to generate realistic estimates about the execution time required for the functions in a pallet.
+This guide illustrates how to write a simple benchmark for a pallet, test the benchmark, and run [benchmarking](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/benchmarking) commands to generate realistic estimates about the execution time required for the functions in a pallet.
 This guide does not cover how to use the benchmarking results to update transaction weights.
 
 ## Add benchmarking to the pallet
 
-1. Open the [`Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/Cargo.toml) file for your pallet in a text editor.
+1. Open the [`Cargo.toml`](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/Cargo.toml) file for your pallet in a text editor.
    
 2. Add the `frame-benchmarking` crate to the [dependencies] for the pallet using the same version and branch as the other dependencies in the pallet.
    
    For example:
 
    ```toml
-   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.25", optional = true }
+   frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0", optional = true }
    ```
 1. Add `runtime-benchmarks` to the list of [features] for the pallet.
    
@@ -81,7 +81,7 @@ This guide does not cover how to use the benchmarking results to update transact
    fn test_benchmarking_[benchmark_name]<T>::() -> Result<(), &'static str>
    ```
 
-   The benchmarking module for [pallet-example-basic](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs) provides a few simple sample benchmarks.
+   The benchmarking module for [pallet-example-basic](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/benchmarking.rs) provides a few simple sample benchmarks.
    For example:
 
    ```rust
@@ -240,7 +240,7 @@ After you update the runtime, you are ready to compile it with the `runtime-benc
 
 You can use the `benchmarking.rs` and `weights.rs` files for any prebuilt pallet to learn more about benchmarking different types of functions.
 
-- [Example pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/benchmarking.rs)
-- [Example pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/examples/basic/src/weights.rs)
-- [Balances pallet: Benchmarks](https://github.com/paritytech/substrate/blob/master/frame/balances/src/benchmarking.rs)
-- [Balances pallet: Weights](https://github.com/paritytech/substrate/blob/master/frame/balances/src/weights.rs)
+- [Example pallet: Benchmarks](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/benchmarking.rs)
+- [Example pallet: Weights](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/examples/basic/src/weights.rs)
+- [Balances pallet: Benchmarks](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/balances/src/benchmarking.rs)
+- [Balances pallet: Weights](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/balances/src/weights.rs)

@@ -131,7 +131,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
@@ -143,7 +143,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
    
    Note that you should use the same branch and version information for all pallets to ensure that they are compatible with each other.
    Using pallets from different branches can result in compiler errors.
-   This example illustrates adding pallets to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v0.9.28"`.
+   This example illustrates adding pallets to the `Cargo.toml` file if the other pallets use `branch = "polkadot-v1.0.0"`.
 
 2. Add the `pallet-node-authorization/std` features to the list of `features` to enable when compiling the runtime.
 
@@ -421,7 +421,7 @@ To start the first node:
    --alice \
    --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a \
    --port 30333 \
-   --ws-port 9944
+   --rpc-port 9944
    ```
 
    In this command, the `--node-key` option to specify the key to be used for a secure connection to the network.
@@ -432,7 +432,7 @@ To start the first node:
    - `--chain=local` for a local testnet (not the same as the `--dev` flag!).
    - `--alice` to name the node `alice` and make the node a validator that can author and finalize blocks.
    - `--port` to assign a port for peer-to-peer communication.
-   - `--ws-port` to assign a listening port for WebSocket connections.
+   - `--rpc-port` to assign a listening port for WebSocket connections.
 
 ### Start the second node
 
@@ -454,7 +454,7 @@ To start the second node:
    --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 \
    --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 \
    --port 30334 \
-   --ws-port 9945
+   --rpc-port 9945
    ```
 
    After both nodes are started, you should start to see new blocks authored and finalized in both terminal logs.
@@ -480,7 +480,7 @@ To start the third node:
    --name charlie  \
    --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e \
    --port 30335 \
-   --ws-port=9946 \
+   --rpc-port=9946 \
    --offchain-worker always
    ```
 
@@ -585,7 +585,7 @@ To start the sub-node:
    --name dave \
    --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a \
    --port 30336 \
-   --ws-port 9947 \
+   --rpc-port 9947 \
    --offchain-worker always
    ```
 
@@ -631,5 +631,5 @@ To learn more about the topics introduced in this tutorial, see the following re
 
 - [Accounts, addresses, and keys](/learn/accounts-addresses-keys)
 - [Node authorization pallet](https://paritytech.github.io/substrate/master/pallet_node_authorization/index.html#)
-- [Node authorization source code](https://github.com/paritytech/substrate/blob/master/frame/node-authorization/src/lib.rs)
+- [Node authorization source code](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/node-authorization/src/lib.rs)
 - [Monitor node metrics](/tutorials/build-a-blockchain/monitor-node-metrics/)

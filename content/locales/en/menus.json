@@ -14,8 +14,6 @@
   "developers.home": "Home",
   "developers.docs": "Docs",
   "developers.rustdocs": "Rust Docs",
-  "developers.marketplace": "Marketplace",
-  "developers.playground": "Playground",
   "developers.smart-contracts": "Smart Contracts",
   "developers.substrate-connect": "Substrate Connect",
   "developers.rococo-network": "Rococo Network",
@@ -32,7 +30,6 @@
 
   "ecosystem.opportunities.hackathons": "Hackathons",
   "ecosystem.opportunities.grants": "Grants",
-  "ecosystem.opportunities.careers": "Careers",
 
   "ecosystem.resources.seminar": "Substrate Seminar",
   "ecosystem.resources.past-seminars": "Past Seminars",

@@ -48,7 +48,7 @@ To prepare a working folder with the binaries for the test network:
 1. Clone the Polkadot repository by running a command similar to the following:
 
    ```bash
-   git clone https://github.com/paritytech/polkadot
+   git clone https://github.com/paritytech/polkadot-sdk
    ```
 
 1. Change to the root of the `polkadot` directory by running the following command:
@@ -60,15 +60,9 @@ To prepare a working folder with the binaries for the test network:
 1. Checkout the latest release of Polkadot.
 
    Release branches use the naming convention `release-v<n.n.n>`.
-   For example, the release branch used in this tutorial is `release-v0.9.37`.
-   You can check out a more recent release branch instead of using `release-v0.9.37`.
+   For example, the release branch used in this tutorial is `release-v1.0.0` which is in master branch.
+   You can check out a more recent release branch instead of using `git checkout release-v1.1.0`.
    You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
-
-   For example:
-
-   ```bash
-   git checkout release-v0.9.37
-   ```
 
 1. Compile the relay chain node by running the following command:
 
@@ -79,7 +73,7 @@ To prepare a working folder with the binaries for the test network:
 1. Copy the Polkadot binary into your working `binaries` folder by running a command similar to the following:
 
    ```bash
-   cp ./target/release/polkadot ../binaries/polkadot-v0.9.37
+   cp ./target/release/polkadot ../binaries/polkadot-v1.0.0
    ```
 
    As this example illustrates, it's generally a good practice to append the version of `polkadot` to the binary name to keep the files in the `binaries` folder organized.
@@ -112,7 +106,7 @@ To add the parachain collator binary to the working folder:
    For example:
 
    ```bash
-   git checkout polkadot-v0.9.37
+   git checkout polkadot-v1.0.0
    ```
 
 4. Compile the parachain template collator by running the following command:
@@ -126,7 +120,7 @@ To add the parachain collator binary to the working folder:
 5. Copy the parachain binary into your working `binaries` folder by running a command similar to the following:
 
    ```bash
-   cp ./target/release/parachain-template-node ../binaries/parachain-template-node-v0.9.37
+   cp ./target/release/parachain-template-node ../binaries/parachain-template-node-v1.0.0
    ```
 
    In this example, your working directory is` $HOME/binaries` or `~/binaries` so you must navigate up a directory level from your current `substrate-parachain-template` root directory.
@@ -177,7 +171,7 @@ To download and configure Zombienet:
    ```toml
    [relaychain]
 
-   default_command = "../binaries/polkadot-v0.9.37"
+   default_command = "../binaries/polkadot-v1.0.0"
    default_args = [ "-lparachain=debug" ]
 
    chain = "rococo-local"
@@ -200,7 +194,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-A-1000-collator01"
-      command = "../binaries/parachain-template-node-v0.9.37"
+      command = "../binaries/parachain-template-node-v1.0.0"
 
    [[parachains]]
    id = 1001
@@ -208,7 +202,7 @@ To download and configure Zombienet:
 
       [parachains.collator]
       name = "parachain-B-1001-collator01"
-      command = "../binaries/parachain-template-node-v0.9.37"
+      command = "../binaries/parachain-template-node-v1.0.0"
    ```
 
 4. Save your changes and close the file.

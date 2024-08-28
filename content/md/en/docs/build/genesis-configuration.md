@@ -4,6 +4,11 @@ description:
 keywords:
 ---
 
+<div class="warning">
+  Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/pallet_macros/attr.genesis_build.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
+
 The first block produced by any blockchain is referred to as the genesis block.
 The hash associated with this block is the top-level parent of all blocks produced after that first block.
 
@@ -14,7 +19,7 @@ As you learned in [Chain specification](/build/chain-spec/), the chain specifica
 However, the chain specification doesn't create the storage items that get initialized when you start a node.
 Instead, the storage items are defined in the pallets included in the runtime as described in [Runtime storage](/build/runtime-storage/).
 
-After you create storage items for the runtime, you can choose whether they should be set to some initial value as part of the genesis configuration and included in the genesis block.  
+After you create storage items for the runtime, you can choose whether they should be set to some initial value as part of the genesis configuration and included in the genesis block.
 To specify the storage items that you want to set an initial state for, Substrate provides two specialized FRAME attribute macros.
 
 The macros you can use to initialize storage items as part of the genesis configuration for a chain are:
@@ -115,12 +120,17 @@ All of the `GenesisConfig` types for the pallets that included in the constructi
 The aggregated `RuntimeGenesisConfig` implements the [`BuildStorage`](https://paritytech.github.io/substrate/master/sp_runtime/trait.BuildStorage.html) trait to build all of the initial storage items for the runtime.
 For example, the node template runtime builds storage items for the following pallets that have a `RuntimeGenesisConfig` specified by default:
 
-- [System pallet](#system-pallet)
-- [Aura pallet](#aura-pallet)
-- [Grandpa pallet](#grandpa-pallet)
-- [Balances pallet](#balances-pallet)
-- [TransactionPayment pallet](#transactionpayment-pallet)
-- [Sudo pallet](#sudo-pallet)
+- [Configure a simple storage value](#configure-a-simple-storage-value)
+  - [Configure macros in the pallet](#configure-macros-in-the-pallet)
+  - [Configure the chain specification](#configure-the-chain-specification)
+- [Adding genesis configuration to the runtime](#adding-genesis-configuration-to-the-runtime)
+  - [System pallet](#system-pallet)
+  - [Aura pallet](#aura-pallet)
+  - [Grandpa pallet](#grandpa-pallet)
+  - [Balances pallet](#balances-pallet)
+  - [TransactionPayment pallet](#transactionpayment-pallet)
+  - [Sudo pallet](#sudo-pallet)
+- [Initialize storage items within a pallet](#initialize-storage-items-within-a-pallet)
 
 ### System pallet
 
@@ -193,7 +203,7 @@ pub struct RuntimeGenesisConfig {
 
 Ultimately, the `RuntimeGenesisConfig` is exposed by way of the [`ChainSpec`](https://paritytech.github.io/substrate/master/sc_chain_spec/trait.ChainSpec.html) trait.
 
-For a more complete example of genesis storage configuration for Substrate, see the [chain specification that ships with the Substrate code base](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
+For a more complete example of genesis storage configuration for Substrate, see the [chain specification that ships with the Substrate code base](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/bin/node/cli/src/chain_spec.rs).
 
 ## Initialize storage items within a pallet
 

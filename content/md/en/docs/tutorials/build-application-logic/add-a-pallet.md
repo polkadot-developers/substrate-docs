@@ -72,7 +72,7 @@ To add the dependencies for the Nicks pallet to the runtime:
    For example, add a line similar to the following:
 
    ```toml
-   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.37" }
+   pallet-nicks = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
    ```
 
    This line imports the `pallet-nicks` crate as a dependency and specifies the following:
@@ -117,7 +117,7 @@ The `Config` trait is used to identify the parameters and types that the pallet 
 
 Most of the pallet-specific code required to add a pallet is implemented using the `Config` trait.
 You can review what you to need to implement for any pallet by referring to its Rust documentation or the source code for the pallet.
-For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs).
+For example, to see what you need to implement for the `nicks` pallet, you can refer to the Rust documentation for [`pallet_nicks::Config`](https://paritytech.github.io/substrate/master/pallet_nicks/pallet/trait.Config.html) or the trait definition in the [Nicks pallet source code](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/nicks/src/lib.rs).
 
 For this tutorial, you can see that the `Config` trait in the `nicks` pallet declares the following types:
 
