@@ -30,7 +30,7 @@ By completing this tutorial, you will accomplish the following objectives:
 Before the light client can connect to a network, you must have a web application that specifies the network the light client should connect to, the nodes for it to communicate with, and the consensus-critical state it must have at genesis.
 This information is available in the [chain specification](/build/chain-spec/) file for the network.
 
-Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/connect_src.WellKnownChain.html) enumeration list.
+Substrate Connect is preconfigured to recognize several chains that are defined in the [WellKnownChain](https://paritytech.github.io/substrate-connect/api/enums/_substrate_connect.WellKnownChain.html) enumeration list.
 These well-known chains are:
 
 - Polkadot identified as `polkadot`

@@ -81,8 +81,8 @@ If a transaction is invalid—for example, because it is too large or doesn't co
 A transaction might be rejected for any of the following reasons:
 
 - The transaction has already been included in a block so it is dropped from the verifying queue.
-- The transaction's signature is invalid, so it is immediately be rejected.
-- The transaction is too large to fit in the current block, so it is be put back in a queue for a new verification round.
+- The transaction's signature is invalid, so it is immediately rejected.
+- The transaction is too large to fit in the current block, so it is put back in a queue for a new verification round.
 
 ## Transactions ordered by priority
 
@@ -136,7 +136,7 @@ Before committing any state changes to storage, the runtime logic should perform
 
 Note that [events](/build/events-and-errors/) are also written to storage.
 Therefore, the runtime logic should not emit an event before performing the complementary actions.
-If a transaction fails after an event is emitted, the event is not be reverted.
+If a transaction fails after an event is emitted, the event is not reverted.
 
 ### Finalizing a block
 
