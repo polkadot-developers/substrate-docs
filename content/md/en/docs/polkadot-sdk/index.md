@@ -10,7 +10,7 @@ keywords:
 
 In [May
 2023](https://forum.polkadot.network/t/psa-parity-is-currently-working-on-merging-the-polkadot-stack-repositories-into-one-single-repository/2883),
-Parity Technologies started moving 3 repositories of
+Parity Technologies started moving the three repositories that contained
 [`substrate`](https://github.com/paritytech/substrate),
 [`polkadot`](https://github.com/paritytech/polkadot), and
 [`cumulus`](https://github.com/paritytech/cumulus), formerly independent in development and
@@ -26,7 +26,7 @@ new home. Consider the [resources below](#alternative-resources) as primary sour
 
 > You may still access the old content of this website in the navbar, but be aware of the fact that some content might not be up to date.
 
-Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of polkadot-sdk, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
+Note that **this does not impact the development of Substrate as a framework**. Substrate, as a framework, is still being maintained with full steam as a part of `polkadot-sdk`, and retains its full ability to be used to build both [standalone blockchains](https://github.com/paritytech/polkadot-sdk-solochain-template), or [Polkadot powered parachains](https://github.com/paritytech/polkadot-sdk-parachain-template).
 
 ## Alternative Resources
 
