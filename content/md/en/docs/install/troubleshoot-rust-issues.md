@@ -137,7 +137,7 @@ Currently, the `rustup` installer installs by default to the bash profile (on Ma
 source "$HOME/.cargo/env"
 ```
 
-## Installing cmake or protobuf for M-series macOS users
+## Installing cmake or protobuf for Apple Silicon (M-series) macOS users
 
 Currently, there are issues when compiling the Substrate node while using the packages that are pre-installed on macOS computers with the M-series chip.
 
