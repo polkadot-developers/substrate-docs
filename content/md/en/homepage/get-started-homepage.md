@@ -10,4 +10,6 @@ bodyLinkTwoTitle: Blockchain basics
 bodyLinkTwoURL: /learn/blockchain-basics/
 bodyLinkThreeTitle: Architecture and Rust libraries
 bodyLinkThreeURL: /learn/architecture/
+bodyLinkFourTitle:
+bodyLinkFourURL:
 ---

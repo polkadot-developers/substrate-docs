@@ -53,7 +53,7 @@ To prepare a working folder with the binaries for the test network:
    Release branches use the naming convention `release-v<n.n.n>`.
    For example, the release branch used in this tutorial is `release-v1.0.0`.
    You can check out a more recent release branch instead of using `release-v1.0.0`.
-   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot/releases) tab.
+   You can find information about recent releases and what's included in each release on the [Releases](https://github.com/paritytech/polkadot-sdk/releases) tab.
 
 1. Change to the root of the `polkadot` directory by running the following command:
 
@@ -69,10 +69,11 @@ To prepare a working folder with the binaries for the test network:
 
    Compiling the node can take 15 to 60 minuets to complete.
 
-1. Copy the Polkadot binary into your working `bin` folder by running a command similar to the following:
+1. Copy the Polkadot binary and workers into your working `bin` folder by running a command similar to the following:
 
    ```bash
    cp ./target/release/polkadot ../bin/polkadot-v1.0.0
+   cp ./target/release/polkadot-*-worker ../bin/
    ```
 
    As this example illustrates, it's generally a good practice to append the version of `polkadot` to the binary name to keep the files in the `bin` folder organized.

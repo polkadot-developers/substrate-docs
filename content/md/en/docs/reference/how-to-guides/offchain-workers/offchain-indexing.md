@@ -7,6 +7,10 @@ keywords:
   - indexing
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 This guide will step you through how to pass data from an extrinsic to an offchain worker without writing to storage.
 
 Occasionally on-chain extrinsics need to pass data to offchain workers with predictable write behavior.

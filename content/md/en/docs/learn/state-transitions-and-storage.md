@@ -57,7 +57,7 @@ Substrate's [runtime storage APIs](/build/runtime-storage) expose a number of st
 
 ### Storage value keys
 
-To calculate the key for a simple [Storage Value](/build/runtime-storage#storage-value), take the [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself.
+To calculate the key for a simple [Storage Value](/build/runtime-storage#storage-value), take the [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the pallet that contains the Storage Value and prepend to it the TwoX 128 hash of the name of the Storage Value itself.
 For example, the [Sudo](https://paritytech.github.io/substrate/master/pallet_sudo/index.html) pallet exposes a Storage Value item named `Key`:
 
 ```rust

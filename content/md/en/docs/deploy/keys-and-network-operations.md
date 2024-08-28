@@ -36,12 +36,12 @@ Session keys are private online keys that are used by validators to sign consens
 Session keys must be available online to enable the validator to perform certain network operations.
 
 These keys aren't used to control funds and they should only be used for their intended purpose.
-They can be changed regularly
+They can be changed regularly.
 To create session keys, a validator node operator must use a controller account to generate a certificate signed with the session's public key.
 The certificate attests that the key acts on behalf of the validator's staking account and nominators.
 After creating the session key, the validator node operator informs the chain that this key represents the controller key by
 publishing the session certificate in a transaction on the chain.
-In most cases, node operators use the [Session](https://paritytech.github.io/substrate/master/pallet_session/index.html)) pallet to manage their session keys.
+In most cases, node operators use the [Session](https://paritytech.github.io/substrate/master/pallet_session/index.html) pallet to manage their session keys.
 
 The [`SessionKeys`](https://paritytech.github.io/substrate/master/sp_session/index.html)
 trait is a generic, indexable type and you can declare any number of session keys in the runtime.

@@ -86,8 +86,6 @@ Default localhost port configuration:
 ```env
 GATSBY_WEBSITE_URL=http://localhost:8100
 GATSBY_DOCS_URL=http://localhost:8200
-GATSBY_MARKETPLACE_URL=http://localhost:8300
-GATSBY_CAREERS_URL=https://careers.substrate.io
 ```
 
 **Start development server**
