@@ -135,6 +135,150 @@
   transition: 0.33s;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+@keyframes wobbleFade {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+    text-shadow: 0px 5px 30px #24CC85;
+  }
+  5% {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    opacity: 0.95;
+    text-shadow: 0px 5px 33px #24CC85;
+  }
+  10% {
+    transform: translate(3px, -3px) rotate(1deg);
+    opacity: 0.9;
+    text-shadow: 0px 5px 36px #24CC85;
+  }
+  15% {
+    transform: translate(-3px, 3px) rotate(-1deg);
+    opacity: 0.85;
+    text-shadow: 0px 5px 39px #24CC85;
+  }
+  20% {
+    transform: translate(3px, 3px) rotate(1deg);
+    opacity: 0.8;
+    text-shadow: 0px 5px 42px #24CC85;
+  }
+  25% {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    opacity: 0.75;
+    text-shadow: 0px 5px 45px #24CC85;
+  }
+  30% {
+    transform: translate(3px, -3px) rotate(1deg);
+    opacity: 0.7;
+    text-shadow: 0px 5px 48px #24CC85;
+  }
+  35% {
+    transform: translate(-3px, 3px) rotate(-1deg);
+    opacity: 0.65;
+    text-shadow: 0px 5px 51px #24CC85;
+  }
+  40% {
+    transform: translate(3px, 3px) rotate(1deg);
+    opacity: 0.6;
+    text-shadow: 0px 5px 54px #24CC85;
+  }
+  45% {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    opacity: 0.55;
+    text-shadow: 0px 5px 57px #24CC85;
+  }
+  50% {
+    transform: translate(3px, -3px) rotate(1deg);
+    opacity: 0.5;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  55% {
+    transform: translate(-3px, 3px) rotate(-1deg);
+    opacity: 0.45;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  60% {
+    transform: translate(3px, 3px) rotate(1deg);
+    opacity: 0.4;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  65% {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    opacity: 0.35;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  70% {
+    transform: translate(3px, -3px) rotate(1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  75% {
+    transform: translate(-3px, 3px) rotate(-1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  80% {
+    transform: translate(3px, 3px) rotate(1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  85% {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  90% {
+    transform: translate(3px, -3px) rotate(1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  95% {
+    transform: translate(-3px, 3px) rotate(-1deg);
+    opacity: 0.3;
+    text-shadow: 0px 5px 60px #24CC85;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.3; /* End at 0.3 opacity */
+    text-shadow: 0px 5px 60px #24CC85; /* End at 60px spread */
+  }
+}
+
+.substrate {
+  animation: wobbleFade 10s forwards; /* Use forwards to retain the final state */
+  text-shadow: 0px 5px 30px #24CC85;
+}
+
+.polkadot-sdk {
+  font-family: "Unbounded";
+}
+
+.underline-effect {
+  position: relative;
+  display: inline-block;
+  color: white; /* Base text color */
+}
+
+.underline-effect::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px; /* Thickness of the underline */
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  background-color: #e6007a; /* Color of the underline */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.underline-effect:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
 /* Hide scrollbar on windows */
 
 .nav-sidebar {
@@ -181,7 +325,7 @@ pre {
   margin: 1rem 0 2rem 0;
 }
 
-/* Code View */ 
+/* Code View */
 .markdown-body a.anchor {
   display:none;
 }
