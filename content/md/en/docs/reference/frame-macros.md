@@ -4,7 +4,7 @@ description:
 keywords:
 ---
 <div class="warning">
-  <strong>⚠️ WARNING:</strong> This section contains outdated information. Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
+  Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/frame_support/attr.pallet.html">Rust docs</a> for the most up-to-date documentation on this topic.
 </div>
 
 Substrate uses customized [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to generate code and aggregate the logic from the pallets you implement for a runtime.
