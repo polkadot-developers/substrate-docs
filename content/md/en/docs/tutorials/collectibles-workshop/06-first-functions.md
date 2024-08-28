@@ -129,7 +129,8 @@ With errors and events out of the way, it's time to write the core logic for cre
 			// retaining uniqueness.
 			let unique_payload = (
 				random,
-				frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),frame_system::Pallet::<T>::block_number(),
+				frame_system::Pallet::<T>::extrinsic_index().unwrap_or_default(),
+				frame_system::Pallet::<T>::block_number(),
 		);
 		
 		// Turns into a byte array
