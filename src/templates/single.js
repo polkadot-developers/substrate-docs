@@ -1,3 +1,4 @@
+import { useLocation } from '@reach/router';
 import { graphql } from 'gatsby';
 import { Layout, Link, SEO } from 'gatsby-plugin-substrate';
 import React from 'react';
@@ -20,6 +21,8 @@ export default function DocsSinglePage({ data, pageContext }) {
   const { gitLogLatestDate } = data.markdownRemark.parent.fields != null ? data.markdownRemark.parent.fields : '';
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
+  const location = useLocation(); // Get the current location
+
   function titleize(slug) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
     words = words[0].toUpperCase() + words.substring(1);
@@ -102,6 +105,17 @@ export default function DocsSinglePage({ data, pageContext }) {
                   <h1>{title}</h1>
                 </header>
                 <main className="markdown-body">
+                  {location.pathname !== '/polkadot-sdk' && (
+                    <div className="deprecation">
+                      <strong>⚠️ Update Notice:</strong>
+                      <p>
+                        <i>
+                          Please read <a href="/polkadot-sdk">Substrate to Polkadot SDK</a> page first.
+                        </i>
+                      </p>
+                      <hr></hr>
+                    </div>
+                  )}
                   <Markdown htmlAst={htmlAst} />
                 </main>
               </div>

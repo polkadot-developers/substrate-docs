@@ -138,6 +138,6 @@ This option is primarily used for faster compile time when you don't need to upd
 
 ## Where to go next
 
-- [Wasm-builder README](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/utils/wasm-builder/README.md)
+- [Wasm-builder source](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/utils/wasm-builder/src/lib.rs)
 - [Rust compilation options](https://doc.rust-lang.org/cargo/commands/cargo-build.html#compilation-options)
 - [Discussion: Removing the native runtime](https://github.com/paritytech/substrate/issues/10579)

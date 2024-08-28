@@ -44,7 +44,7 @@ To install and compile the `subkey` program:
 1. Change to the root directory of the Substrate repository by running the following command:
 
    ```bash
-   cd substrate
+   cd polkadot-sdk
    ```
 
 1. Compile the `subkey` program using the `nightly` toolchain by running the following command:

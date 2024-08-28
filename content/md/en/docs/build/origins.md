@@ -5,6 +5,10 @@ keywords:
   - origins
 ---
 
+<div class="warning">
+  Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_origin/index.html">Rust docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 The runtime origin is used by dispatchable functions to check where a call has come from.
 
 ## Raw origins
