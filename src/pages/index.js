@@ -2,26 +2,45 @@ import { graphql } from 'gatsby';
 import { Layout, Section, SEO } from 'gatsby-plugin-substrate';
 import React from 'react';
 
-import CardsList from '../components/layout/Documentation/CardList';
-import SearchDocumentation from '../components/ui/SearchDocumentation';
+import Card from '../components/layout/Documentation/Card';
+// import CardsList from '../components/layout/Documentation/CardList';
+// import SearchDocumentation from '../components/ui/SearchDocumentation';
 
 export default function Home({ data }) {
-  const { content } = data;
+  // eslint-disable-next-line no-empty-pattern
+  const {} = data;
   return (
     <Layout showFooterNewsletter={false} mode="full">
       <SEO title="Home" />
-      <Section className="text-center mt-12">
-        <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold">Substrate Documentation</h1>
-        <div className="sm:max-w-lg mx-auto mb-10">
-          <p className="max-w-lg text-xl mx-auto">
-            Substrate documentation includes conceptual, procedural, and reference information for blockchain builders
-            and parachain project teams.
-          </p>
-        </div>
-        <SearchDocumentation />
+      <Section className="text-center mt-12 intro">
+        <h1 className="mb-8 text-4xl lg:text-6xl md:text-6xl font-title font-extrabold substrate">Substrate</h1>
+        <p>Is now part of </p>
+        <h1
+          className="
+          mb-8 text-4xl
+          lg:text-6xl
+          md:text-6xl
+          font-title
+          font-extrabold
+          polkadot-sdk
+          underline-effect"
+        >
+          Polkadot SDK
+        </h1>
       </Section>
       <Section className="flex justify-center">
-        <CardsList data={content.edges} />
+        <Card
+          title="Polkadot SDK"
+          text="Polkadot SDK is the overarching name for Substrate, and the rest of Polkadot's Development Kit."
+          featured_image="/media/images/homepage/hands-on.png"
+          link="/polkadot-sdk"
+          bodyLinkOneURL="https://github.com/polkadot-developers/"
+          bodyLinkOneTitle="Polkadot Developers"
+          bodyLinkTwoURL="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/index.html"
+          bodyLinkTwoTitle="Polkadot SDK Docs"
+          bodyLinkThreeURL="https://papermoonio.github.io/polkadot-ecosystem-docs-draft/"
+          bodyLinkThreeTitle="Polkadot Ecosystem Documentation"
+        />
       </Section>
     </Layout>
   );

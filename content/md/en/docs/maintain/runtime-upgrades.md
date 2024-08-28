@@ -19,7 +19,7 @@ If a runtime upgrade requires changes to the existing state, it is likely to req
 
 In [Build process](/main-docs/build/build-process/), you learned that compiling a node generated both a platform-native binary and a WebAssembly binary and that selecting which binary to use at different points in the block production process can be controlled by execution strategy command-line options.
 The component that selects the runtime execution environment to communicate with is called the **executor**.
-Although you can override the default execution strategies for custom scenarios, in most cases, or the executor select the appropriate binary to use by evaluating the following information for both the native and WebAssembly runtime binaries:
+Although you can override the default execution strategies for custom scenarios, in most cases the executor select the appropriate binary to use by evaluating the following information for both the native and WebAssembly runtime binaries:
 
 - `spec_name`
 - `spec_version`

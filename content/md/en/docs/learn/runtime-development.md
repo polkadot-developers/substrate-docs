@@ -139,7 +139,6 @@ pub mod pallet {
  // Declare the pallet type
  // This is a placeholder to implement traits and methods.
  #[pallet::pallet]
- #[pallet::generate_store(pub(super) trait Store)]
  pub struct Pallet<T>(_);
 
  // Add the runtime configuration trait
