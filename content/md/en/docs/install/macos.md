@@ -4,7 +4,7 @@ description: Set up a local development environment for Substrate on macOS.
 keywords:
 ---
 
-You can install Rust and set up a Substrate development environment on Apple macOS computers with either Intel or Apple M-series processors.
+You can install Rust and set up a Substrate development environment on Apple macOS computers with either Intel or Apple Silicon (M-series) processors.
 
 ## Before you begin
 
