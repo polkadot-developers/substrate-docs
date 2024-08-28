@@ -35,5 +35,5 @@ Below, you can find a number of replacement resources to learn more about Polkad
 - [Polkadot Wiki](https://wiki.polkadot.network/docs/build-guide)
 - [Polkadot Developers](https://github.com/polkadot-developers/)
 - [Polkadot Blockchain Academy](https://polkadot.com/blockchain-academy)
-- Polkadot Ecosystem Documentation by Papermoon (Work in progress)
 - [Polkadot SDK Rust Docs](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/index.html)
+- Polkadot Ecosystem Documentation by Papermoon (Work in progress, see progress [here](https://forum.polkadot.network/t/decentralized-futures-papermoon-first-updates/9265))

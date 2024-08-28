@@ -107,12 +107,13 @@ export default function DocsSinglePage({ data, pageContext }) {
                 <main className="markdown-body">
                   {location.pathname !== '/polkadot-sdk' && (
                     <div className="deprecation">
-                      <strong>⚠️ Deprecation Notice:</strong>
+                      <strong>⚠️ Update Notice:</strong>
                       <p>
                         <i>
                           Please read <a href="/polkadot-sdk">Substrate to Polkadot SDK</a> page first.
                         </i>
                       </p>
+                      <hr></hr>
                     </div>
                   )}
                   <Markdown htmlAst={htmlAst} />

@@ -16,7 +16,7 @@ polkadot-sdk:
   url: /polkadot-sdk/
 
 quick-start:
-  title: Quick start (Deprecated)
+  title: Quick start
   url: /quick-start/
   pages:
     - title: Substrate at a glance
@@ -29,7 +29,7 @@ quick-start:
       url: /quick-start/modify-the-runtime/
 
 learn:
-  title: Learn (Deprecated)
+  title: Learn
   url: /learn/
   pages:
     - title: Welcome to Substrate
@@ -74,7 +74,7 @@ learn:
       url: /learn/xcm-communication/
 
 install:
-  title: Install (Deprecated)
+  title: Install
   url: /install/
   pages:
     - title: Rust toolchain
@@ -111,7 +111,7 @@ install:
   #- title: Economic models
   #url: /design/economic-models/
 build:
-  title: Build (Deprecated)
+  title: Build
   url: /build/
   pages:
     - title: Smart contracts
@@ -148,7 +148,7 @@ build:
     #url: /build/executor/
 
 test:
-  title: Test (Deprecated)
+  title: Test
   url: /test/
   pages:
     - title: Unit test
@@ -163,7 +163,7 @@ test:
       url: /test/check-runtime/
 
 deploy:
-  title: Deploy (Deprecated)
+  title: Deploy
   url: /deploy/
   pages:
     - title: Prepare to deploy
@@ -179,7 +179,7 @@ deploy:
 #   - title: Launch a parachain
 #     url: /deploy/launch-a-parachain/
 maintain:
-  title: Maintain (Deprecated)
+  title: Maintain
   url: /maintain/
   pages:
     - title: Monitor
@@ -196,7 +196,7 @@ maintain:
 #     url: /maintain/data-migration/
 
 tutorials:
-  title: Tutorials (Deprecated)
+  title: Tutorials
   url: /tutorials/
   pages:
     - title: Build a blockchain
@@ -287,7 +287,7 @@ tutorials:
 #         url: /tutorials/integrate-with-tools/access-evm-accounts/
 
 reference:
-  title: Reference (Deprecated)
+  title: Reference
   url: /reference/
   pages:
     - title: Rust API
@@ -340,7 +340,7 @@ reference:
       url: /reference/how-to-guides/
 
 community:
-  title: Community (Deprecated)
+  title: Community
   url: /community/
   pages:
     - title: Content style guide
