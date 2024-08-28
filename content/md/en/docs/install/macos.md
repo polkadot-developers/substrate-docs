@@ -13,7 +13,7 @@ Before you install Rust and set up your development environment on macOS, verify
 - Operating system version is 10.7 Lion, or later.
 - Processor speed of at least 2Ghz, 3Ghz recommended.
 - Memory of at least 8 GB RAM, 16 GB recommended.
-- Storage of 10 GB available space.
+- Storage of 10 GB available.
 - Broadband Internet connection.
 
 ### Support for Apple Silicon
