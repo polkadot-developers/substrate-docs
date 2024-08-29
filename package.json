@@ -21,8 +21,8 @@
 		"lint:fix": "eslint --fix --ext js --ext jsx .",
 		"extract-locales": "yarn run babel --config-file ./babel-extract-locales.config.js -o tmp/chunk.js 'src/**/*.{js,jsx}' && rm -rf tmp",
 		"checklinks": "yarn blc --filter-level=3 -rof --requests=10 --exclude='/crates.io' --exclude='/localhost:8000' --exclude='/localhost:8100' --exclude='/localhost:8300' --exclude='/paritytech.github.io/' --exclude='undefined' http://localhost:9000/quick-start/ | tee checklinks.log",
-    "checklinks-external": "find content/md -name \\*.md -print0 | xargs -0 -n1 markdown-link-check -p -c .github/workflows/mlc_config.json"
-  },
+		"checklinks-external": "find content/md -name \\*.md -print0 | xargs -0 -n1 markdown-link-check -p -c .github/workflows/mlc_config.json"
+	},
 	"dependencies": {
 		"aos": "^2.3.4",
 		"classnames": "^2.3.1",
