@@ -10,12 +10,7 @@ keywords:
 ---
 
 <div class="warning">
-	<p>
-	<strong>⚠️ WARNING:</strong> This page contains potentially outdated information. Reading it might still be useful, yet we suggest taking it with a grain of salt.
-	</p>
-	<p>
-	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">`polkadot-sdk-docs` crate</a> for the most up-to-date documentation on this topic.
-	</p>
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_offchain_workers/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
 </div>
 
 Because most blockchains can't access data that's hosted on servers outside of their own network, they typically use external third-party services—**oracles**—to pull information in from or push information out to locations that are outside of the network.

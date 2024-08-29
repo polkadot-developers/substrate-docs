@@ -1,6 +1,6 @@
 # Redirects from what the browser requests to what we serve
 
-/rustdocs                   https://paritytech.github.io/substrate/master/sc_service/ 301!
+/rustdocs                   https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/index.html 301!
 
 /how-to-guides              /reference/                                               301!
 
