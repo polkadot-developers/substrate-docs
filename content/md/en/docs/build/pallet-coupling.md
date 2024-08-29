@@ -6,6 +6,10 @@ keywords:
   - pallet design
 ---
 
+<div class="warning">
+	 Please refer to the <a href="https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/frame_pallet_coupling/index.html">Rust Docs</a> for the most up-to-date documentation on this topic.
+</div>
+
 The term **coupling** is often used to describe the degree to which two software modules depend on each other.
 For example, in object-oriented programming tight coupling and loose coupling are used to describe the relationship between objects classes:
 

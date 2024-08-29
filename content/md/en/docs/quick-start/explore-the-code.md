@@ -48,7 +48,7 @@ From this manifest, you see that the node template workspace includes three pack
 - The `runtime` package provides all of the application logic for handling accounts, balances, transaction fees, and other features that have been included in the node template.
 
 Each member package also has its own manifest—its own `Cargo.toml` file—that contains package-specific information, including dependencies and configuration settings, that are required to compile that member package.
-For example, the `Cargo.toml` file for the `node` member of the workspace specifies the name of the package is `node-template` and lists the core libraries and primitives that enable the node template to provide essential blockchain services.
+For example, the `Cargo.toml` file for the `node` member of the workspace specifies the name of the package as `node-template` and lists the core libraries and primitives that enable the node template to provide essential blockchain services.
 You'll learn more about libraries and primitives in [Architecture and Rust libraries](/learn/architecture).
 For now, it's enough to understand the importance of the manifest in describing dependencies and other critical information for each package.
 

@@ -131,7 +131,7 @@ To add the `node-authorization` pallet to the Substrate runtime:
 
    ```toml
    [dependencies]
-   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
+   pallet-node-authorization = { default-features = false, version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
    ```
 
    This line imports the `pallet-node-authorization` crate as a dependency and specifies the following configuration details for the crate:
