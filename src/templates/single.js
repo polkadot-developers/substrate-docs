@@ -22,6 +22,7 @@ export default function DocsSinglePage({ data, pageContext }) {
   //const pagePathNoSlash = pagePath.endsWith('/') ? pagePath.slice(0, -1) : pagePath;
   const relativeFilePath = data.markdownRemark.parent.relativePath;
   const location = useLocation(); // Get the current location
+  console.log('location.pathname: ', location.pathname);
 
   function titleize(slug) {
     let words = slug.toLowerCase().replace(/-/g, ' ');
@@ -105,7 +106,7 @@ export default function DocsSinglePage({ data, pageContext }) {
                   <h1>{title}</h1>
                 </header>
                 <main className="markdown-body">
-                  {location.pathname !== '/polkadot-sdk' && (
+                  {!location.pathname.includes('polkadot-sdk') && (
                     <div className="deprecation">
                       <strong>⚠️ Update Notice:</strong>
                       <p>
