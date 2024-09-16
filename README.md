@@ -74,9 +74,23 @@ yarn
 
 This website uses a submodule for shared components. To set it up please refer to the [gatsby-plugin-substrate repository](https://github.com/paritytech/gatsby-plugin-substrate#troubleshooting).
 
+```shell
+git submodule update --init --recursive
+```
+
+To update the submodule to the latest main branch, run:
+
+```shell
+git submodule update --remote
+```
+
 **Configure environment variables**
 
 Copy `example.env.development` into a new `.env.development` file.
+
+```shell
+cp example.env.development .env.development
+```
 
 Config URL variables based on your preferable local setup.
 URL will be used for links generation between Substrate websites.
