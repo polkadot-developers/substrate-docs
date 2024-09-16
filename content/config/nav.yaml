@@ -91,25 +91,25 @@ install:
       url: /install/troubleshoot-rust-issues/
 
 #design:
- # title: Design
- # url: /design/
- # pages:
-    #- title: Substrate empowers builders
-    #  url: /design/substrate-empowers-builders/
-    #- title: Decide what to build
-    #  url: /design/decide-what-to-build/
-  #- title: Execution
-  #url: /design/execution/
-  #- title: Runtimes and clients
-  #url: /design/runtimes-and-clients/
-  #- title: Pallet design
-  #url: /design/pallet-design/
-  #- title: Smart contract pallets
-  #url: /design/smart-contract-pallets/
-  #- title: Storage design decisions
-  #url: /design/storage-design/
-  #- title: Economic models
-  #url: /design/economic-models/
+# title: Design
+# url: /design/
+# pages:
+#- title: Substrate empowers builders
+#  url: /design/substrate-empowers-builders/
+#- title: Decide what to build
+#  url: /design/decide-what-to-build/
+#- title: Execution
+#url: /design/execution/
+#- title: Runtimes and clients
+#url: /design/runtimes-and-clients/
+#- title: Pallet design
+#url: /design/pallet-design/
+#- title: Smart contract pallets
+#url: /design/smart-contract-pallets/
+#- title: Storage design decisions
+#url: /design/storage-design/
+#- title: Economic models
+#url: /design/economic-models/
 build:
   title: Build
   url: /build/
@@ -220,7 +220,7 @@ tutorials:
         - title: Add a pallet to the runtime
           url: /tutorials/build-application-logic/add-a-pallet/
         #- title: Configure the contracts pallet
-          #url: /tutorials/build-application-logic/contracts-pallet/
+        #url: /tutorials/build-application-logic/contracts-pallet/
         - title: Specify the origin for a call
           url: /tutorials/build-application-logic/specify-the-origin-for-a-call/
         - title: Use macros in a custom pallet
@@ -232,37 +232,37 @@ tutorials:
         - title: Collectibles workshop
           url: /tutorials/collectibles-workshop/
           pages:
-           - title: Pallet builder basics
-             url: /tutorials/collectibles-workshop/runtime-and-pallets/
-           - title: Prepare a working environment
-             url: /tutorials/collectibles-workshop/01-prepare/
-           - title: Get oriented
-             url: /tutorials/collectibles-workshop/02-orientation/
-           - title: Create a new pallet
-             url: /tutorials/collectibles-workshop/03-create-pallet/
-           - title: Shared and custom types
-             url: /tutorials/collectibles-workshop/04-import-traits/
-           - title: Add custom storage items
-             url: /tutorials/collectibles-workshop/05-add-storage-items/
-           - title: Create basic functions
-             url: /tutorials/collectibles-workshop/06-first-functions/
-           - title: More functions
-             url: /tutorials/collectibles-workshop/07-more-functions/
-           - title: Add collectibles to the runtime
-             url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
-#    - title: Develop smart contracts
-#     url: /tutorials/smart-contracts/
-#     pages:
-#       - title: Prepare your first contract
-#         url: /tutorials/smart-contracts/prepare-your-first-contract/
-#       - title: Develop a smart contract
-#         url: /tutorials/smart-contracts/develop-a-smart-contract/
-#       - title: Use maps for storing values
-#         url: /tutorials/smart-contracts/use-maps-for-storing-values/
-#       - title: Build a token contract
-#         url: /tutorials/smart-contracts/build-a-token-contract/
-#       - title: Troubleshoot smart contracts
-#         url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
+            - title: Pallet builder basics
+              url: /tutorials/collectibles-workshop/runtime-and-pallets/
+            - title: Prepare a working environment
+              url: /tutorials/collectibles-workshop/01-prepare/
+            - title: Get oriented
+              url: /tutorials/collectibles-workshop/02-orientation/
+            - title: Create a new pallet
+              url: /tutorials/collectibles-workshop/03-create-pallet/
+            - title: Shared and custom types
+              url: /tutorials/collectibles-workshop/04-import-traits/
+            - title: Add custom storage items
+              url: /tutorials/collectibles-workshop/05-add-storage-items/
+            - title: Create basic functions
+              url: /tutorials/collectibles-workshop/06-first-functions/
+            - title: More functions
+              url: /tutorials/collectibles-workshop/07-more-functions/
+            - title: Add collectibles to the runtime
+              url: /tutorials/collectibles-workshop/08-add-collectibles-to-runtime/
+    - title: Develop smart contracts
+      url: /tutorials/smart-contracts/
+      pages:
+        - title: Prepare your first contract
+          url: /tutorials/smart-contracts/prepare-your-first-contract/
+        - title: Develop a smart contract
+          url: /tutorials/smart-contracts/develop-a-smart-contract/
+        - title: Use maps for storing values
+          url: /tutorials/smart-contracts/use-maps-for-storing-values/
+        - title: Build a token contract
+          url: /tutorials/smart-contracts/build-a-token-contract/
+        - title: Troubleshoot smart contracts
+          url: /tutorials/smart-contracts/troubleshoot-smart-contracts/
     - title: Build a parachain
       url: /tutorials/build-a-parachain/
       pages:
@@ -350,6 +350,6 @@ community:
     - title: Template - How-to guide
       url: /community/template-how-to-guide/
     #- title: Article bounties
-      #url: /community/article-bounty
+    #url: /community/article-bounty
     #- title: Contributor dropbox
-      #url: /community/contributor-dropbox/
+    #url: /community/contributor-dropbox/
