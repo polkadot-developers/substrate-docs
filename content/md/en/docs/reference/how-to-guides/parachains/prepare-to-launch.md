@@ -121,7 +121,7 @@ In these cases, you can:
    without having to do storage migrations. For more information on on-chain runtime upgrades refer to
    the next section.
 
-**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/runtime-upgrade)** for how
+**See the [parachain runtime upgrade guide](/reference/how-to-guides/parachains/upgrade-a-parachain)** for how
 to go about actually performing these incremental runtime upgrades.
 
 ## Launch simulation
@@ -138,7 +138,7 @@ See the [Prepare a local relay chain](/tutorials/build-a-parachain/prepare-a-loc
 
 ## Resources
 
-- [Reference documentation for runtime upgrades](/build/upgrade)
+- [Reference documentation for runtime upgrades](/maintain/runtime-upgrades)
 - [A how-to guide to use benchmarked weights](/reference/how-to-guides/weights/add-benchmarks)
 - [Reference for `try-runtime` documentation](/reference/command-line-tools/try-runtime)
   - [`try-runtime` video workshop](https://www.crowdcast.io/e/substrate-seminar/41)
