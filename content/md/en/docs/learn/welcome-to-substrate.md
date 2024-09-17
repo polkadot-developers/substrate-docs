@@ -31,7 +31,7 @@ You select and combine the pallets that suit your application to compose a custo
 For example, if your application needs to manage account balances, you can simply include the Balances pallet in the configuration of your runtime logic.
 You can then modify the configuration of the pallet in your custom runtime to suit your application.
 
-In the following diagram, the runtime is composed of nine pallets to implement consensus, include timestamps for blocks, manage assets and balances, and prepare a framework for governance and managing pooled funds.
+In the following diagram, the runtime is composed of eight pallets to implement consensus, include timestamps for blocks, manage assets and balances, and prepare a framework for governance and managing pooled funds.
 
 ![Select pallets to compose the runtime](/media/images/docs/compose-runtime.png)
 
