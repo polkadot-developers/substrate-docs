@@ -21,5 +21,5 @@ module.exports = {
   gitter: 'https://gitter.im/paritytech/parity',
   stackoverflow: 'https://stackoverflow.com/questions/tagged/substrate',
   stackexchange: 'https://substrate.stackexchange.com',
-  githubDevhub: 'https://github.com/substrate-developer-hub/',
+  githubDevhub: 'https://github.com/polkadot-developers/',
 };

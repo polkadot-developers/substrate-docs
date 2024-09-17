@@ -136,7 +136,7 @@ const resources = [
     id: 'ecosystem.resources.past-seminars',
   },
   {
-    url: 'https://github.com/substrate-developer-hub/awesome-substrate/blob/master/README.md',
+    url: 'https://github.com/spolkadot-developers/awesome-substrate/blob/master/README.md',
     id: 'ecosystem.resources.awesome-substrate',
   },
 ];

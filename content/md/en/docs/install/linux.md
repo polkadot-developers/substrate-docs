@@ -141,17 +141,13 @@ To compile the Substrate node template:
 1. Clone the node template repository by running the following command:
 
    ```bash
-   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   git clone https://github.com/paritytech/polkadot-sdk-minimal-template
    ```
-
-   In most cases, you can clone the `main` branch to get the latest code.
-   However, you can use the `--branch` command-line option if you want to work with a Substrate branch that is compatible with a specific Polkadot version.
-   Click [Tags](https://github.com/substrate-developer-hub/substrate-node-template/tags) to see the list of branches that are compatible with specific Polkadot versions.
 
 1. Change to the root of the node template directory by running the following command:
 
    ```bash
-   cd substrate-node-template
+   cd polkadot-sdk-minimal-template
    ```
 
    If you want to save your changes and make this branch easy to identify, you can create a new branch by running a command similar to the following:
@@ -160,13 +156,7 @@ To compile the Substrate node template:
    git switch -c my-wip-branch
    ```
 
-1. Compile the node template by running the following command:
-
-   ```bash
-   cargo build --release
-   ```
-
-   Because of the number of packages required, compiling the node can take several minutes.
+   Follow the instructions in the README.md file to build the node.
 
 After the build completes successfully, your local computer is ready for Substrate development activity.
 
@@ -174,7 +164,7 @@ After the build completes successfully, your local computer is ready for Substra
 
 The Substrate Developer Hub acts as a central portal for access to the many resources available to the community.
 Depending on your interests and learning style, you might prefer one avenue over another.
-For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](https://paritytech.github.io/substrate/master).
+For example, if you prefer to read source code and are familiar with Rust, you might want to start by digging into the [Rust API](https://paritytech.github.io/polkadot-sdk/master).
 
 #### Tell me
 

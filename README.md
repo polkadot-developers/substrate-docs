@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://www.docs.substrate.io">
-    <img alt="Substrate Logo" src="https://github.com/substrate-developer-hub/substrate-docs/raw/main/static/img/sub.gif" width="70%" />
+    <img alt="Substrate Logo" src="https://github.com/polkadot-developers/substrate-docs/raw/main/static/img/sub.gif" width="70%" />
   </a>
 </h1>
 <h1 align="center">Substrate Docs</h1>
