@@ -35,7 +35,7 @@ However, there are a few important differences between the node and parachain te
 
 ### Parachain info pallet
 
-By default, the parachain template [runtime](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/runtime/Cargo.toml) includes several parachain-specific pallets, including a [`parachain-info` pallet](https://paritytech.github.io/cumulus/parachain_info/pallet/index.html).
+By default, the parachain template [runtime](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/master/runtime/Cargo.toml) includes several parachain-specific pallets, including a [`parachain-info` pallet](https://paritytech.github.io/polkadot-sdk/master/staging_parachain_info/pallet/index.html).
 This pallet is designed to inject the unique parachain identifier into the parachain runtime.
 This information allows the runtime to know which cross-chain messages are intended for it.
 
@@ -61,7 +61,7 @@ In contrast, the Substrate node template and many other Substrate-based chains i
 
 ### Collator service
 
-The collator service—[`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/node/src/service.rs)—is entirely different in the parachain template from the similarly-named [`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-node-template/blob/main/node/src/service.rs) in the node template.
+The collator service—[`node/src/service.rs`](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/master/node/src/service.rs)—is entirely different in the parachain template from the similarly-named [`node/src/service.rs`](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/master/node/src/service.rs) in the node template.
 The collator service is explicitly designed as a wrapper to provide parachain-specific operations that a standard Substrate node doesn't require.
 
-If you have an existing Substrate chain that you want to convert to a parachain, you should copy the [`node/src/service.rs`](https://github.com/substrate-developer-hub/substrate-parachain-template/blob/main/node/src/service.rs) from the parachain template as a starting point.
+If you have an existing Substrate chain that you want to convert to a parachain, you should copy the [`node/src/service.rs`](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/master/node/src/service.rs) from the parachain template as a starting point.

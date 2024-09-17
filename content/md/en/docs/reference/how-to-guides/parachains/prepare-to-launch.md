@@ -27,7 +27,7 @@ You want to isolate them to a distinct peer group with this ID.
 Protocol ID collisions will cause _many_ issues for your nodes.
 
 In order to set a unique protocol ID, change make sure you use some nonce or salt value. This is set
-(for the [parachain node template](https://github.com/substrate-developer-hub/substrate-parachain-template/))
+(for the [parachain node template](https://github.com/paritytech/polkadot-sdk-parachain-template/))
 as a CLI item in `/client/network/src/command.rs`, and passed to extend the `/client/network/src/chain_spec.rs`
 
 All [chain specification](/build/chain-spec/) files include this item as a field.
@@ -66,7 +66,7 @@ the amount of resource consumption as much as possible for the relay chain.
 
 ## Critical parachain constraints
 
-You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot/blob/f0e1ed0bab6d5cb542b84fa0ad464609198dd255/primitives/src/v2/mod.rs#L322-L348) for all relay chains (these are common constants).
+You can check the maximum sizes [in the Polkadot repo](https://github.com/paritytech/polkadot-sdk/blob/43cd6fd4370d3043272f64a79aeb9e6dc0edd13f/polkadot/primitives/src/v8/mod.rs#L401-L429) for all relay chains (these are common constants).
 Make note of:
 
 - The runtime version of the relay chain you are targeting (these _may_ change)
