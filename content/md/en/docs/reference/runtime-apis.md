@@ -93,7 +93,7 @@ For information about these methods, see [`GrandpaApi`](https://paritytech.githu
 
 ## NominationPoolsApi
 
-Use the `NominationPoolsApi` to get information about about nomination pools and nomination pool members.
+Use the `NominationPoolsApi` to get information about nomination pools and nomination pool members.
 
 This API provides the following methods:
 
