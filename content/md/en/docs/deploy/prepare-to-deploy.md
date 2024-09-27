@@ -13,7 +13,7 @@ The topics in this section highlight some of these key considerations for moving
 
 ## Node roles and responsibilities
 
-As discussed in [Networks and nodes](/learn/node-and-network-types/), you can use Substrate to build blockchains that can be deployed as solo chains or parachains, as private networks, or as custom relay chains.
+As discussed in [Networks and nodes](/learn/networks-and-nodes/), you can use Substrate to build blockchains that can be deployed as solo chains or parachains, as private networks, or as custom relay chains.
 You also learned that nodes can take on different roles depending on your chain and project requirements.
 
 As you prepare for deployment, it's important to keep in mind how different types of nodes are used to ensure they are configured with appropriate hardware and software required to perform their duties.
