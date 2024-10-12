@@ -105,7 +105,7 @@ The main source code for the runtime is located in the `runtime/src/lib.rs` file
 If you open this file in your code editor, it might seen complicated at first.
 There are some nuances that are covered in other parts of the documentation, but in essence, the source code does the following:
 
-- Imports the frame_system and frame_support core services.
+- Imports the `frame_system` and `frame_support` core services.
 - Specifies version information for the runtime.
 - Declares the pallets to include.
 - Declares the types and parameters for each pallet included.
