@@ -69,12 +69,11 @@ To add the Utility pallet:
    For example, you should add a single line similar to the following.
 
    ```toml
-   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-vX.Y.Z" }
+   pallet-utility = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-vX.Y.Z" }
    ```
-
    Be sure to replace `branch = "polkadot-vX.Y.Z"` with the Polkadot branch used for other pallets.
 
-   You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets.
+   You can copy any existing pallet dependency as a model to ensure that the branch setting for the `pallet-utility` dependency is the same as the branch setting for all other pallets. This walkthrough uses `branch = "polkadot-v0.9.42`.
 
 4. Locate the `[features]` section and add the Utility pallet to the list of default features for the standard binary.
 
