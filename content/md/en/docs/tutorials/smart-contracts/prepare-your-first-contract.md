@@ -4,7 +4,7 @@ description: Build and test a simple smart contract using the ink! smart contrac
 keywords:
 ---
 
-As you learned in [Blockchain basics](/main-docs/learn/blockchain-basics/) decentralized applications are most often written as **smart contracts**.
+As you learned in [Blockchain basics](/main-docs/learn/blockchain-basics/), decentralized applications are most often written as **smart contracts**.
 
 Although Substrate is primarily a framework and toolkit for building custom blockchains, it can also provide a platform
 for smart contracts.
@@ -17,7 +17,7 @@ In this tutorial, you'll explore using ink! as a programming language for writin
 
 Before you begin, verify the following:
 
-- You have good internet connection and access to a shell terminal on your local computer.
+- You have a good internet connection and access to a shell terminal on your local computer.
 
 - You are generally familiar with software development and using command-line interfaces.
 
@@ -35,7 +35,7 @@ By completing this tutorial, you will accomplish the following objectives:
 
 - Deploy a smart contract on a local Substrate node.
 
-- Interact with a smart contract using the `cargo-contract` CLI
+- Interact with a smart contract using the `cargo-contract` CLI.
 
 ## Update your Rust environment
 
@@ -65,7 +65,7 @@ To update your development environment:
 
 ## Install `cargo-contract` CLI Tool
 
-`cargo-contract` is a command-line tool which you will use to build, deploy, and interact with your ink! contracts.
+`cargo-contract` is a command-line tool that you will use to build, deploy, and interact with your ink! contracts.
 
 Note that in addition to Rust, installing `cargo-contract` requires a C++ compiler that supports C++17.
 
@@ -169,23 +169,23 @@ To explore the default project files:
 
 1. Open a terminal shell on your computer, if needed.
 
-1. Change to project folder for the `flipper` smart contract, if needed:
+1. Change to the project folder for the `flipper` smart contract, if needed:
 
 1. Open the `Cargo.toml` file in a text editor and review the dependencies for the contract.
 
 1. Open the `lib.rs` file in a text editor and review the macros, constructors, and functions defined for the contract.
 
    - The `#[ink::contract]` macro defines the entry point for your smart contract logic.
-   - The `#[ink(storage)` macro defines a structure to stores a single boolean value for the contract.
-   - The `new` and `default` functions initialize the boolean value to false.
-   - There's a `#[ink(message)` macro with a `flip` function to change the state of the data stored for the contract.
-   - There's a `#[ink(message)` macro with a `get` function to get the current state of the data stored for the contract.
+   - The `#[ink(storage)]` macro defines a structure to store a single Boolean value for the contract.
+   - The `new` and `default` functions initialize the Boolean value to false.
+   - There's a `#[ink(message)]` macro with a `flip` function to change the state of the data stored for the contract.
+   - There's a `#[ink(message)]` macro with a `get` function to get the current state of the data stored for the contract.
 
 ### Test the default contract
 
 At the bottom of the `lib.rs` source code file, there are simple test cases to verify the functionality of the contract.
 These are annotated using the `#[ink(test)]` macro. You can test whether this code is functioning as expected using the
-**offchain test environment**.
+**off-chain test environment**.
 
 To test the contract:
 
@@ -244,7 +244,7 @@ To build the WebAssembly for this smart contract:
    - flipper.json (the contract's metadata)
    ```
 
-   The `.contract` file includes both the business logic and metadata. This is the file that tooling (e.g UIs) expect
+   The `.contract` file includes both the business logic and metadata. This is the file that tooling (e.g. UIs) expects
    when you want to deploy your contract on-chain.
 
    The `.json` file describes all the interfaces that you can use to interact with this contract. This file
@@ -261,7 +261,7 @@ To build the WebAssembly for this smart contract:
 
 ## Start the Substrate Contracts Node
 
-If you have [successfully installed the  `substrate-contracts-node`](/tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
+If you have [successfully installed the `substrate-contracts-node`](/tutorials/smart-contracts/prepare-your-first-contract/#install-the-substrate-contracts-node),
 it's time to start a local node.
 
 1. Start the contracts node in local development mode by running the following command:
@@ -351,17 +351,17 @@ Substrate chain.
    Some notes about the command:
    - The `instantiate` command will do both the `upload` and `instantiate` steps for you.
 
-   - We need to specify the contract constructor to use, which in this case is `new()`
+   - You need to specify the contract constructor to use, which in this case is `new()`.
 
-   - We need to specify the argument to the constructor, which in this case is `false`
+   - You need to specify the argument to the constructor, which in this case is `false`.
 
-   - We need to specify the account uploading and instantiating the contract, which in this case is the default
-     development account of `//Alice`
+   - You need to specify the account uploading and instantiating the contract, which in this case is the default
+     development account of `//Alice`.
 
-   - During development we may want to upload the instantiate the same contract multiple times, so we specify a `salt`
+   - During development, you may want to upload and instantiate the same contract multiple times, so you specify a `salt`
      using the current time. Note that this is optional.
 
-   After running the command confirming that we're happy with the gas estimatation we should see something like this:
+   After running the command and confirming that you're happy with the gas estimation, you should see something like this:
 
    ```text
    Dry-running new (skip with --skip-dry-run)
@@ -397,10 +397,10 @@ We can not only `upload` and `instantiate` contracts using `cargo-contract`, we 
 
 ### `get()` Message
 
-When we initialized the contract we set the initial value of the `flipper` to `false`. We can confirm this by calling
+When we initialized the contract, we set the initial value of the `flipper` to `false`. We can confirm this by calling
 the `get()` message.
 
-Since we are only reading from the blockchain state (we're not writing any new data) we can use the `--dry-run` flag to
+Since we are only reading from the blockchain state (we're not writing any new data), we can use the `--dry-run` flag to
 avoid submitting an extrinsic.
 
 ```bash
@@ -408,18 +408,18 @@ cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message get --su
 ```
 
 Some notes about the command:
-  - The address of the contract we want to call had to be specified using the `--contract` flag
+- The address of the contract we want to call had to be specified using the `--contract` flag.
 
-  - This can be found in the output logs of the `cargo contract instantiate` command
+- This address can be found in the output logs of the `cargo contract instantiate` command.
 
-  - We need to specify the contract message to use, which in this case is `get()`
+- We need to specify the contract message to use, which in this case is `get()`.
 
-  - We need to specify the account callling the contract, which in this case is the default development account of
-     `//Alice`
+- We need to specify the account calling the contract, which in this case is the default development account of
+   `//Alice`.
 
-  - We specify `--dry-run` to avoid submitting an extrinsic on-chain
+- We specify `--dry-run` to avoid submitting an extrinsic on-chain.
 
-After running the command should see something like this:
+After running the command, you should see something like this:
 
 ```text
 Result Success!
@@ -433,10 +433,10 @@ We're interested in the `value` here, which is `false` as expected.
 
 The `flip()` message changes the storage value from `false` to `true` and vice versa.
 
-To call the `flip()` message we will need to submit an extrinsic on-chain because we are altering the state of the
+To call the `flip()` message, we will need to submit an extrinsic on-chain because we are altering the state of the
 blockchain.
 
-To do this we can use the following command:
+To do this, we can use the following command:
 
 ```bash
 cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message flip --suri //Alice
@@ -444,7 +444,7 @@ cargo contract call --contract $INSTANTIATED_CONTRACT_ADDRESS --message flip --s
 
 Notice that we changed the message to `flip` and removed the `--dry-run` flag.
 
-After running we expect to see something like:
+After running, we expect to see something like this:
 
 ```text
 Dry-running flip (skip with --skip-dry-run)
