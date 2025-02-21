@@ -144,32 +144,27 @@ To update the dependencies for the runtime to include the Utility pallet:
    
    For example:
 
-   ```text
+   ```rust
    [dependencies]
-   codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = ["derive"] }
-   scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
+   codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = ["derive"] }
+   scale-info = { version = "2.10.0", default-features = false, features = ["derive"] }
    
-   pallet-aura = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", branch = "polkadot-v1.0.0" }
+   pallet-aura = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
    ```
 
 1. Add the Utility pallet as a dependency.
    
    For example, add a single line with the following fields:
    
-   ```toml
-   pallet-utility = {
-      version = "4.0.0-dev",
-      default-features = false,
-      git = "https://github.com/paritytech/polkadot-sdk.git",
-      branch = "polkadot-v1.0.0"
-   }
+   ```rust
+   pallet-utility = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
    ```
 
 1. Locate the `[features]` section and the list of the default features for the standard binary.
    
    For example:
 
-   ```text
+   ```rust
    [features]
    default = ["std"]
    std = [
@@ -182,7 +177,7 @@ To update the dependencies for the runtime to include the Utility pallet:
 
 1. Add the Utility pallet to the list.
    
-   ```toml
+   ```rust
    "pallet-utility/std",
    ```
 
@@ -280,24 +275,32 @@ To add the Utility types and configuration trait:
 
 1. Locate the `construct_runtime!` macro.
 
-   ```text
-   construct_runtime!(
-     pub struct Runtime 
-     where
-        Block = Block,
-        NodeBlock = opaque::Block,
-        UncheckedExtrinsic = UncheckedExtrinsic
-     {
-            System: frame_system,
-            RandomnessCollectiveFlip: pallet_randomness_collective_flip,
-            Timestamp: pallet_timestamp,
-            Aura: pallet_aura,
+   ```rust
+     #[frame_support::runtime]
+     mod runtime {
+         #[runtime::runtime]
+         #[runtime::derive(
+             RuntimeCall,
+             RuntimeEvent,
+             RuntimeError,
+             RuntimeOrigin,
+             RuntimeFreezeReason,
+             RuntimeHoldReason,
+             RuntimeSlashReason,
+             RuntimeLockId,
+             RuntimeTask
+         )]
+         pub struct Runtime;
+   
+         #[runtime::pallet_index(0)]
+         pub type System = frame_system;
    ```
 
 1. Add the Utility pallet inside the `construct_runtime!` macro.
 
    ```rust
-   Utility: pallet_utility,
+        #[runtime::pallet_index(x)] //*** Change Pallet Index ***//
+        pub type Utility = pallet_utility;
    ```
 
 1. Locate the `runtime_version` macro.
@@ -319,7 +322,7 @@ To add the Utility types and configuration trait:
 1. Update the value for the EXISTENTIAL_DEPOSIT for the Balances pallet.
    
    ```rust
-   pub const EXISTENTIAL_DEPOSIT: u128 = 1000 // Update this value.
+   pub const EXISTENTIAL_DEPOSIT: u128 = 1000; // Update this value.
    ```
    
    This change increases the minimum balance an account is required to have on deposit to be viewed as a valid active account.
