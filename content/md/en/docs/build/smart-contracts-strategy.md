@@ -21,7 +21,7 @@ In general, there are two types of smart contracts that you can deploy in a Subs
 The type of contract you want to build is one of the first decisions you need to make.
 It's also important to note that smart contracts are instructions that are instantiated and executed using a specific chain address—the smart contract account address.
 This means that—in addition to selecting a language for writing the smart contract—you need to identify the chain that will serve as the host platform for your contract.
-For example, you might want to deploy your application as a smart contract on an existing parachain in the Polkadot or Kusama ecosystem, work with another team to build a custom paraachain specifically for the type of contract you want to deploy, or build your own runtime with the specific features and functionality you want to deliver.
+For example, you might want to deploy your application as a smart contract on an existing parachain in the Polkadot or Kusama ecosystem, work with another team to build a custom parachain specifically for the type of contract you want to deploy, or build your own runtime with the specific features and functionality you want to deliver.
 
 ## About the Contracts pallet
 
