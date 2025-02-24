@@ -98,6 +98,7 @@ You can use the FRAME storage data structures to read or write any value that ca
 The storage module provides the following types of storage structures:
 
 - [StorageValue](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageValue.html) to store any single value, such as a `u64`.
+  - Note: As a rule of thumb you will want to avoid storing values over 16KiB under one key (see [here]([https://github.com/paritytech/substrate/pull/3126#issue-468524837](https://github.com/paritytech/substrate/issues/2966#issuecomment-510087309)) for the original analysis of effect on storage size on timings in RocksDb).
 - [StorageMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageMap.html) to store a single key to value mapping, such as a specific account key to a specific balance value.
 - [StorageDoubleMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageDoubleMap.html) to store values in a storage map with two keys as an optimization to efficiently remove all entries that have a common first key.
 - [StorageNMap](https://paritytech.github.io/substrate/master/frame_support/storage/trait.StorageNMap.html) to store values in a map with any arbitrary number of keys.
