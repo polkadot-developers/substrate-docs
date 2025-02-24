@@ -48,6 +48,8 @@ In [Simulate a network](/tutorials/build-a-blockchain/simulate-network/), you st
 For this tutorial, you generate your own secret keys for the validator nodes in the network.
 It's important to remember that each participant in the blockchain network is responsible for generating unique keys.
 
+For the most part, an "account" and "keys" are interchangeable terms; the keys you generate identify the account you have. Keys can also be derived deterministically based on a couple of inputs, namely a **secret phrase** and, optionally, an additional **password**. Using these inputs, you can use one of several **schemes** to derive the actual keys (`sr25519` or `ed25519` being the most common schemes). You'll see this in action when we generate keys for different purposes to be used by your blockchain node.
+
 ### Key generation options
 
 There are several ways you can generate keys.
@@ -72,7 +74,7 @@ To generate keys using the node template:
 1. Generate a random secret phrase and keys by running the following command:
 
    ```bash
-   ./target/release/node-template key generate --scheme Sr25519 --password-interactive
+   ./target/release/node-template key generate --scheme sr25519 --password-interactive
    ```
 
 1. Type a password for the generated keys.
@@ -91,12 +93,12 @@ To generate keys using the node template:
    You now have the Sr25519 key for producing blocks using `aura` for one node.
    In this example, the Sr25519 public key for the account is `5CfBuoHDvZ4fd8jkLQicNL8tgjnK8pVG9AiuJrsNrRAx6CNW`.
 
-1. Use the **secret phrase** for the account you just generated to derive keys using the Ed25519 signature scheme.
+1. Next, use the **secret phrase** for the account you just generated to derive keys using the Ed25519 signature scheme, which you'll need for the `grandpa` [pallet](/reference/frame-pallets/).
 
    For example, run a command similar to the following:
 
    ```bash
-   ./target/release/node-template key inspect --password-interactive --scheme Ed25519 "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
+   ./target/release/node-template key inspect --password-interactive --scheme ed25519 "pig giraffe ceiling enter weird liar orange decline behind total despair fly"
    ```
 
 1. Type the password you used to generate the keys.
