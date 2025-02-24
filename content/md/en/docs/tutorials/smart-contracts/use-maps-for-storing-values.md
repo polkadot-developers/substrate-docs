@@ -250,7 +250,7 @@ To add insert and remove functions to the contract:
 
    ```rust
    #[ink(message)]
-   pub fn inc_mine(&mut self, by: i32) {
+   pub fn inc_mine(&mut self, by: u32) {
        let caller = self.env().caller();
        let my_value = self.get_mine();
        self.my_map.insert(caller, &(my_value + by));
