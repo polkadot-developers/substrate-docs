@@ -236,7 +236,7 @@ be used.
 When you declare a storage item, you can specify how queries should handle the return value if there is no value in storage for the specified key.
 In the storage declaration, you specify the following:
 
-- [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html) to query an optional value from storage and return `Some` if storage contains a value or `None` if there's no value is in storage.
+- [`OptionQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.OptionQuery.html) to query an optional value from storage and return `Some` if storage contains a value or `None` if there's no value in storage.
 - [`ResultQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ResultQuery.html) to query a result value from storage and return an error if there's no value is in storage.
 
 - [`ValueQuery`](https://paritytech.github.io/substrate/master/frame_support/storage/types/struct.ValueQuery.html) to query a value from storage and return the value.
