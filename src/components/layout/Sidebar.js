@@ -6,7 +6,7 @@ const Sidebar = ({ children }) => {
     <div className="">
       <div className={cx('h-full', {})}>
         <div className={cx('h-screen overflow-x-hidden overflow-y-scroll nav-sidebar pb-64', {})}>
-          <div className={cx('w-64 transition-all transform')}>{children}</div>
+          <div className={cx('transition-all transform')}>{children}</div>
         </div>
       </div>
     </div>
