@@ -93,15 +93,30 @@ To add `substrate-connect` to your application:
    npm i @polkadot/api
    ```
 
+1. Finally install `@substrate/connect` package by running the appropriate command for the package manager you use.
+
+  For example, if you use `yarn`, run the following command:
+
+  ```bash
+  yarn add @substrate/connect
+  ```
+
+  If you use `npm` as your package manager, run the following command:
+
+  ```bash
+  npm i @substrate/connect
+  ```
+
 ### Use the RPC provider to connect to a well-known network
 
 The following example illustrates how you can use the `rpc-provider` to connect to a well-known network such as Polkadot, Kusama, Westend, or Rococo.
 
 ```js
 import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+import * as Sc from "@substrate/connect";
 import { ApiPromise } from "@polkadot/api";
 // Create the provider for a known chain
-const provider = new ScProvider(WellKnownChain.westend2);
+const provider = new ScProvider(Sc, WellKnownChain.westend2);
 // Stablish the connection (and catch possible errors)
 await provider.connect();
 // Create the PolkadotJS api instance
@@ -118,11 +133,12 @@ The following example illustrates how you can use the `rpc-provider` to connect 
 
 ```js
 import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
+import * as Sc from "@substrate/connect";
 import { ApiPromise } from "@polkadot/api";
 import jsonCustomSpec from "./jsonCustomSpec.json";
 // Create the provider for the custom chain
 const customSpec = JSON.stringify(jsonCustomSpec);
-const provider = new ScProvider(customSpec);
+const provider = new ScProvider(Sc, customSpec);
 // Stablish the connection (and catch possible errors)
 await provider.connect();
 // Create the PolkadotJS api instance
@@ -139,15 +155,16 @@ The following example illustrates how you can use the `rpc-provider` to connect 
 
 ```js
 import { ScProvider, WellKnownChain } from "@polkadot/rpc-provider/substrate-connect";
+import * as Sc from "@substrate/connect";
 import { ApiPromise } from "@polkadot/api";
 import jsonParachainSpec from "./jsonParachainSpec.json";
 // Create the provider for the relay chain
-const relayProvider = new ScProvider(WellKnownChain.westend2);
+const relayProvider = new ScProvider(Sc, WellKnownChain.westend2);
 // Create the provider for the parachain. Notice that
 // we must pass the provider of the relay chain as the
 // second argument
 const parachainSpec = JSON.stringify(jsonParachainSpec);
-const provider = new ScProvider(parachainSpec, relayProvider);
+const provider = new ScProvider(Sc, parachainSpec, relayProvider);
 // Stablish the connection (and catch possible errors)
 await provider.connect();
 // Create the PolkadotJS api instance
@@ -234,9 +251,9 @@ You can download the Chrome and Firefox extensions from [Substrate Connect](http
   It's meant to be quick and easy to use but less secure than other solutions.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/burnr)
 
-- [Multi-demo](https://paritytech.github.io/substrate-connect/demo/)
+- [Multi-chain demo](https://paritytech.github.io/substrate-connect/demo/)
 
-  Simple demo that covers multichain and parachain examples.
+  A simple demo that covers multichain and parachain examples.
   [Github](https://github.com/paritytech/substrate-connect/tree/main/projects/demo)
 
 ## Brave browser WebSocket issue
