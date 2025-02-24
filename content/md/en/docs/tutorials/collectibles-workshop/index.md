@@ -12,7 +12,7 @@ As you progress through the workshops, you’ll learn basic concepts, see exampl
 No coding experience is required (but it doesn’t hurt to have some).
 
 Workshops assume that you are familiar with a few basic Substrate concepts and terms.
-If you aren’t quite ready to try the workshops, explore the simpler [Build application logic](/tutorials/build-a-blockchain/) tutorials for a more guided introduction to developing with Substrate.
+If you aren’t quite ready to try the workshops, explore the simpler [Build application logic](/tutorials/build-application-logic/) tutorials for a more guided introduction to developing with Substrate.
 
 ## Road map
 
