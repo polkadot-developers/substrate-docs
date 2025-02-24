@@ -30,17 +30,17 @@ Before you begin, verify the following:
 1. Clone the node template repository by running the following command:
 
    ```sh
-   git clone https://github.com/substrate-developer-hub/substrate-node-template
+   git clone https://github.com/paritytech/polkadot-sdk-solochain-template
    ```
 
    This command clones the `main` branch.
 
-   Optionally, you can use the `--branch` command-line option and a [tag](https://github.com/substrate-developer-hub/substrate-node-template/tags) to specify a version of Polkadot you want the node to be compatible with.
+   Optionally, you can use the `--branch` command-line option and a [tag](https://github.com/paritytech/polkadot-sdk-solochain-template/tags) to specify a version of Polkadot you want the node to be compatible with.
 
 2. Change to the root of the cloned directory:
 
    ```sh
-   cd substrate-node-template
+   cd polkadot-sdk-solochain-template
    ```
 
 3. Create a new branch to save your work by running a command similar to the following:
@@ -60,7 +60,7 @@ Before you begin, verify the following:
 4. Compile the node template:
 
    ```sh
-   cargo build --package node-template --release
+   cargo build --release
    ```
 
    The first time you compile the node, it can take some time to complete.
@@ -75,7 +75,7 @@ Before you begin, verify the following:
 1. Verify that your node is ready to use and see information about the command-line options available by running the following command:
 
    ```sh
-   ./target/release/node-template --help
+   ./target/release/solochain-template-node --help
    ```
 
    The usage information displays the command-line options you can use to:
@@ -87,7 +87,7 @@ Before you begin, verify the following:
 1. View account information for the predefined `Alice` development account by running the following command:
 
    ```sh
-   ./target/release/node-template key inspect //Alice
+   ./target/release/solochain-template-node key inspect //Alice
    ```
 
    The command displays the following account and address information:
@@ -111,7 +111,7 @@ Before you begin, verify the following:
 1. Start the node in development mode by running the following command:
 
    ```sh
-   ./target/release/node-template --dev
+   ./target/release/solochain-template-node --dev
    ```
 
    In development mode, the chain doesn't require any peer computers to finalize blocks.
