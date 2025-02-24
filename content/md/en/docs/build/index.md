@@ -19,5 +19,5 @@ The topics in this section provide a more detailed exploration of the code used 
 - [Chain specification](/build/chain-spec) discusses the use of chain specifications, including what you can and can't modify, and how to distribute customized chain specifications.
 - [Genesis configuration](/build/genesis-configuration) describes the main elements of the genesis configuration.
 - [Build process](/build/build-process) delves into the details of how the Rust code compiles to a Rust binary and a WebAssembly target and how these two targets are used to optimize node operations.
-- [Build a deterministic runtime](/build/build-a-deterministic-runtime)s xplains how to use the Substrate runtime toolbox (`srtool`) and Docker to build the WebAssembly runtime for Substrate-based chains.
+- [Build a deterministic runtime](/build/build-a-deterministic-runtime) explains how to use the Substrate runtime toolbox (`srtool`) and Docker to build the WebAssembly runtime for Substrate-based chains.
 - [Troubleshoot your code](/build/troubleshoot-your-code) highlights general and Substrate-specific coding techniques for troubleshooting issues and following best practices.
