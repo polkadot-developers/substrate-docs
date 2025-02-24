@@ -10,7 +10,7 @@ keywords:
 Substrate and FRAME provide a flexible framework for developing custom logic for your blockchain.
 This flexibility enables you to design complex and interactive pallets and implement sophisticated runtime logic.
 However, determining the appropriate [weight](/reference/glossary/#weight) to assign to the functions in your pallets can be a difficult task.
-Benchmarking enables you to measure the time it takes to execute different functions in the runtime and under different conditions.
+Benchmarking enables you to measure the time it takes to execute different functions in the runtime under different conditions.
 If you use benchmarking to assign accurate weights to function calls, you can prevent your blockchain from being overloaded and unable to produce blocks or vulnerable to denial of service (DoS) attacks by malicious actors.
 
 ## Why benchmark a pallet
@@ -42,7 +42,7 @@ Benchmarking assumes all transactions have linear complexity because higher comp
 ## Benchmarking and weight
 
 As discussed in [Transactions, weights, and fees](/build/tx-weights-fees/), Substrate-based chains use the concept of **weight** to represent the time it takes to execute the transactions in a block.
-The time required to execute any particular call in a transaction depends on a several factors, including the following:
+The time required to execute any particular call in a transaction depends on several factors, including the following:
 
 - Computational complexity.
 - Storage complexity.
