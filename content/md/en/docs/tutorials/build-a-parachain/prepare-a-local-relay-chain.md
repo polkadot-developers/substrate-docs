@@ -124,7 +124,7 @@ If you are completing this tutorial at the same time as anyone on the same local
 
 ## Start the relay chain node
 
-Before you can start block production for a parachains, you need to start a relay chain for them to connect to.
+Before you can start block production for parachains, you need to start a relay chain for them to connect to.
 
 To start the validator nodes using the [raw sample chain specification file](/assets/tutorials/relay-chain-specs/raw-local-chainspec.json):
 
